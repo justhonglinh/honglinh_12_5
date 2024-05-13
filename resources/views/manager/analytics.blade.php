@@ -43,10 +43,10 @@
                     <td>{{$data->address}}</td>
 
                     <td style="text-align: center">
-                        @if($minutes > 50)
-                            {{ $new = $hours+1}}
-                        @endif
-                        <p>Total Time: {{ $new }} hours, {{ $minutes }} minutes, {{ $seconds }} seconds</p>
+
+                        <p>Start time :{{$data->start_time}}</p>
+                        <p>End time :</p>
+                        <h2></h2>Total Time: {{ $hours }} hours, {{ $minutes }} minutes, {{ $seconds }} seconds
                     </tr>
 
             @endforeach
