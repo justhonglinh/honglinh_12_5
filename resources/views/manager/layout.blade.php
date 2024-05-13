@@ -58,40 +58,35 @@
                 <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
                     <div class="position-sticky">
                         <div class="list-group list-group-flush mx-3 mt-4">
-                            <a
-                                href="/manager/employees"
-                                class="list-group-item list-group-item-action py-2 ripple"
-                                aria-current="true"
-                            >
-                                <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Nhân viên </span>
-                            </a>
-
-                            <a
-                                href="/manager/level"
-                                class="list-group-item list-group-item-action py-2 ripple ">
-                                <i class="fas fa-chart-area fa-fw me-3">
-                                </i><span>Level</span>
-                            </a>
-                            <a
-                                href="/manager/working_times"
-                                class="list-group-item list-group-item-action py-2 ripple ">
+                            <a href="/manager/working_times" class="list-group-item list-group-item-action py-2 ripple ">
                                 <i class="fas fa-chart-area fa-fw me-3">
                                 </i><span>Chấm Công</span>
                             </a>
 
-                            <a
-                                href="/manager/position"
-                                class="list-group-item list-group-item-action py-2 ripple ">
+                            <a href="/manager/employees" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+                                <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Nhân viên </span>
+                            </a>
+
+                            <a href="/manager/analytics" class="list-group-item list-group-item-action py-2 ripple">
+                                <i class="fas fa-chart-line fa-fw me-3"></i><span>Analytics</span>
+                            </a>
+
+                            <a href="" class="list-group-item list-group-item-action py-2 ripple">
+                                <i class="fas fa-lock fa-fw me-3"></i><span>Payment information</span>
+                            </a>
+
+                            <a href="/manager/level" class="list-group-item list-group-item-action py-2 ripple ">
+                                <i class="fas fa-chart-area fa-fw me-3">
+                                </i><span>Level</span>
+                            </a>
+
+
+                            <a href="/manager/position" class="list-group-item list-group-item-action py-2 ripple ">
                                 <i class="fas fa-chart-area fa-fw me-3">
                                 </i><span>Position</span>
-
                             </a>
-                            <a href="/manager/position" class="list-group-item list-group-item-action py-2 ripple">
-                                <i class="fas fa-lock fa-fw me-3"></i><span>Payment information</span></a
-                            >
-                            <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-                            ><i class="fas fa-chart-line fa-fw me-3"></i><span>Analytics</span></a
-                            >
+
+
                             <ul class="navbar-nav ms-auto d-flex flex-row">
                                 <li class="nav-item dropdown">
                                     <div class="d-flex flex-row align-items-center justify-content-center">

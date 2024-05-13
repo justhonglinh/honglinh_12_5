@@ -14,15 +14,17 @@ class CheckWorkController extends Controller
             return view('manager.check_work', ['employees' => $employees]);
     }
 
-    function check(Request $request)
+    function check($id , Request $request)
     {
-        $checkin = $request->get('checkin') ;
-        $checkout = $request->get('checkout') ;
-        DB::table('working_time')->insert([
+        $checkin = $request->get('startDateTime') ;
+        $checkout = $request->get('endDateTime') ;
+        DB::table('working_times')->insert([
+            'employee_id' => $id ,
            'start_time' => $checkin,
             'end_time' => $checkout,
             'created_at' => now()
         ]);
+        return redirect("/manager/working_times") ;
     }
 
 }

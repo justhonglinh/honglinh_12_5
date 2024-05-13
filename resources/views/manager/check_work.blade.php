@@ -43,7 +43,7 @@
                     <td>{{$employees->address}}</td>
 
                     <td style="text-align: center">
-                        <form method="POST" action="/manager/working_times/{{$employees->id}}">
+                        <form method="POST" action="/manager/working_times/check/{{$employees->id}}">
                             @csrf
 
                             <label for="startDateTime">Ngày giờ bắt đầu:</label>
@@ -58,10 +58,22 @@
 
                             <button type="submit">Tính</button>
                         </form>
-                    </td>
-                </tr>
+{{--                        <script>--}}
+{{--                            document.addEventListener('DOMContentLoaded', function() {--}}
+{{--                                var startDateTimeField = document.getElementById('startDateTime');--}}
+{{--                                var endDateTimeField = document.getElementById('endDateTime');--}}
+{{--                                var currentDateTime = new Date().toISOString().slice(0, 16);--}}
+{{--                                startDateTimeField.value = currentDateTime;--}}
+{{--                                endDateTimeField.value = currentDateTime;--}}
+{{--                            });--}}
+{{--                        </script>--}}
+                    </tr>
+
             @endforeach
+
+
             </tbody>
         </table>
+
     </main>
 @endsection

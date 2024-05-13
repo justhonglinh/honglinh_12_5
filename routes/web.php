@@ -51,9 +51,11 @@ Route::post('/manager/position/add',[\App\Http\Controllers\ManagerController::cl
 Route::get('/manager/position/delete/{id}',[\App\Http\Controllers\ManagerController::class,'deletePosition'])->name('process-delete-position') ;
 Route::post('/manager/position/edit/{id}',[\App\Http\Controllers\ManagerController::class,'processEditPosition'])->name('process-edit-position') ;
 //chcek work
-
 Route::get('/manager/working_times',[\App\Http\Controllers\CheckWorkController::class,'viewHome']) ;
 Route::post('/manager/working_times/check/{id}',[\App\Http\Controllers\CheckWorkController::class,'check']) ;
+
+
+Route::get('/manager/analytics',[\App\Http\Controllers\AnalyticsController::class,'viewHome']) ;
 
 //employees page
 Route::get('/employees/home', function () {
