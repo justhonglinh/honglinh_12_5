@@ -68,7 +68,7 @@
                             </a>
 
                             <a href="/manager/analytics" class="list-group-item list-group-item-action py-2 ripple">
-                                <i class="fas fa-chart-line fa-fw me-3"></i><span>Analytics</span>
+                                <i class="fas fa-chart-line fa-fw me-3"></i><span>History</span>
                             </a>
 
                             <a href="" class="list-group-item list-group-item-action py-2 ripple">
@@ -79,7 +79,6 @@
                                 <i class="fas fa-chart-area fa-fw me-3">
                                 </i><span>Level</span>
                             </a>
-
 
                             <a href="/manager/position" class="list-group-item list-group-item-action py-2 ripple ">
                                 <i class="fas fa-chart-area fa-fw me-3">

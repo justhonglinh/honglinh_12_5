@@ -31,10 +31,10 @@
                         </div>
                     </td>
                     <td>
-                        <p class="text-muted mb-0">Level :{{$position->position_name}}</p>
+                        <p class="text-muted mb-0">Position :{{$position->position_name}}</p>
                     </td>
                     <td>
-                        <p class="fw-normal mb-1">{{$position->salary}}</p>
+                        <p class="fw-normal mb-1">{{$position->salary}}/1 hours</p>
                     </td>
                     <td> Quantiy nhe !</td>
 

@@ -10,8 +10,27 @@ class ManagerController extends Controller
 {
     function viewHome()
     {
-        $employees = DB::table('users')->where('role', '=', 'employees')->get();
-        return view('manager.home', ['employees' => $employees]);
+        //$employees = DB::table('users')->where('role', '=', 'employees')->get();
+        $users = DB::table('users')
+            ->join('position', 'users.position', '=', 'position.id')
+            ->join('level', 'users.level', '=', 'level.id')
+            ->select('users.*', 'position.position_name', 'level.level_name')
+            ->get();
+        $users = DB::table('users')
+            ->join('position', 'users.position', '=', 'position.id')
+            ->join('level', 'users.level', '=', 'level.id')
+            ->select('users.*', 'position.position_name', 'level.level_name')
+            ->union(function ($query) {
+                $query->select('users.*', 'position.position_name', 'level.level_name')
+                    ->from('users')
+                    ->join('position', 'users.position', '=', 'position.id')
+                    ->join('level', 'users.level', '=', 'level.id')
+                    ->where('role', '=', 'employees');
+            })
+            ->get();
+
+        return view('manager.home', ['employees' => $users]);
+       // return view('manager.home', ['employees' => $employees,'users' => $users]);
     }
     function viewLevel()
     {
