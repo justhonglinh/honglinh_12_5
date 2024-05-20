@@ -40,16 +40,16 @@
 
                     <td style="text-align: center">
                         <button class="btn btn-warning" data-bs-toggle="modal"
-                                data-bs-target="#modalUpdateEmployees_{{$position->id}}">
+                                data-bs-target="#modalUpdatePosition_{{$position->id}}">
                             Edit
                         </button>
 
-                        <a href="/manager/position/delete/{{$position->id}}" class="btn btn-danger">Delete</a>
+                        <a href="/position/delete/{{$position->id}}" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
                 {{--    <!-- Modal -->--}}
                 {{--    {--edit--}}
-                <div class="modal fade" id="modalUpdateLevel_{{$position->id}}" data-bs-backdrop="static"
+                <div class="modal fade" id="modalUpdatePosition_{{$position->id}}" data-bs-backdrop="static"
                      data-bs-keyboard="false" tabindex="-1"
                      aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">

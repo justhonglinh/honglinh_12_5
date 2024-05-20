@@ -19,49 +19,49 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($employees as $employees)
+                @foreach($users as $users)
                     <tr>
                         <td>
                             <div class="d-flex align-items-center">
                                 <img
-                                    src="{{$employees->avatar_url}}"
+                                    src="{{$users->avatar_url}}"
                                     alt=""
                                     style="width: 45px; height: 45px"
                                     class="rounded-circle "
                                 />
                                 <div class="ms-3">
-                                    <p class="fw-bold mb-1">{{$employees->name}}</p>
-                                    <p class="text-muted mb-0">{{$employees->email}}</p>
+                                    <p class="fw-bold mb-1">{{$users->name}}</p>
+                                    <p class="text-muted mb-0">{{$users->email}}</p>
                                 </div>
                             </div>
                         </td>
                         <td>
-                            <p class="fw-normal mb-1">{{$employees->position}}</p>
-                            <p class="text-muted mb-0">Level :{{$employees->level}}</p>
+                            <p class="fw-normal mb-1">{{$users->position_name}}</p>
+                            <p class="text-muted mb-0">Level :{{$users->level_name}}</p>
                         </td>
                         <td>
-                            <p class="fw-normal mb-1">{{$employees->phone}}</p>
+                            <p class="fw-normal mb-1">{{$users->phone}}</p>
                         </td>
-                        <td>{{$employees->address}}</td>
+                        <td>{{$users->address}}</td>
 
                         <td style="text-align: center">
                             <button class="btn btn-warning" data-bs-toggle="modal"
-                                    data-bs-target="#modalUpdateEmployees_{{$employees->id}}">
+                                    data-bs-target="#modalUpdateEmployees_{{$users->id}}">
                                 Edit
                             </button>
 
-                            <a href="/manager/employees/delete/{{$employees->id}}" class="btn btn-danger">Delete</a>
+                            <a href="/manager/employees/delete/{{$users->id}}" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
 
-                @endforeach
+
                 {{--    <!-- Modal -->--}}
                 {{--    {--edit--}}
-                <div class="modal fade" id="modalUpdateEmployees_{{$employees->id}}" data-bs-backdrop="static"
+                <div class="modal fade" id="modalUpdateEmployees_{{$users->id}}" data-bs-backdrop="static"
                                                     data-bs-keyboard="false" tabindex="-1"
                                                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
-                        <form method="POST" action="{{ route('process-edit-employees', ['id' => $employees->id]) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('process-edit-employees', ['id' => $users->id]) }}" enctype="multipart/form-data">
                             @csrf
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -69,28 +69,56 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Họ và tên<input class="form-control" value="{{$employees->name}}" name="name" required>
-                                    Email<input class="form-control mt-2" type="email" value="{{$employees->email}}" name="email" required>
-                                    Password<input class="form-control mt-2" value="{{$employees->password}}" name="password" required>
-                                    Số điện thoại<input class="form-control mt-2" value="{{$employees->phone}}" name="phone" required>
-                                    Địa chỉ<input class="form-control mt-2" value="{{$employees->address}}" name="address" required>
+                                    Họ và tên
+                                    <input class="form-control" value="{{ $users->name }}" name="name" required>
 
-                                    Ảnh <input class="form-control mt-2" type="file" name="avatar_url"  required accept="image/*">
+                                    Email
+                                    <input class="form-control mt-2" type="email" value="{{ $users->email }}" name="email" required>
 
-                                    Giới tính<input class="form-control mt-2" value="{{$employees->gender}}" name="gender" required>
-                                    Vị trí<input class="form-control mt-2" value="{{$employees->position}}" name="position" required>
-                                    Cấp bậc<input class="form-control mt-2" value="{{$employees->level}}" name="level" required>
+                                    Password
+                                    <input class="form-control mt-2" type="password"  name="password" required>
 
+                                    Số điện thoại
+                                    <input class="form-control mt-2" value="{{ $users->phone }}" name="phone" required>
+
+                                    Địa chỉ
+                                    <input class="form-control mt-2" value="{{ $users->address }}" name="address" required>
+
+                                    Ảnh
+                                    <input class="form-control mt-2" type="file" name="avatar_url" required accept="image/*">
+
+                                    Giới tính
+                                    <select class="form-select mt-2" aria-label="Default select example" name="gender" >
+                                        <option selected disabled>Gender</option>
+                                        <option value="Nam">Nam</option>
+                                        <option value="Nữ">Nữ</option>
+                                    </select>
+
+                                    Vị trí
+                                    <select class="form-select mt-2" aria-label="Default select example" name="position">
+                                        <option selected disabled>Position</option>
+                                        @foreach ($position as $pos)
+                                            <option value="{{ $pos->id }}" {{ $users->position_name == $pos->position_name ? 'selected' : '' }}>{{ $pos->position_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    Cấp bậc
+                                    <select class="form-select mt-2" aria-label="Default select example" name="level">
+                                        <option selected disabled>Level</option>
+                                        <option value="default" {{ old('level') == "default" ? 'selected' : '' }}>Default Value</option>
+                                        @foreach($level as $item)
+                                            <option value="{{ $item->id }}" {{ old('level') == $item->id ? 'selected' : '' }}>{{ $item->level_name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                    <button type="submit" class="btn btn-primary">thay doi</button>
+                                    <button type="submit" class="btn btn-primary">Thay Đổi</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
-
+                @endforeach
                 <!-- Modal -->
                     {{--add--}}
                     <div class="modal fade" id="modalCreateEmployees" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -110,20 +138,26 @@
                                         <input class="form-control mt-2" placeholder="Số điện thoại" name="phone" required>
                                         <input class="form-control mt-2" placeholder="Address" name="address" required>
                                         <input class="form-control mt-2" type="file" name="avatar_url" required accept="image/*">
-                                        <select class="form-select mt-2" aria-label="Default select example" name="gender">
-                                            <option selected >Gender</option>
+
+                                        <select class="form-select mt-2" aria-label="Default select example" name="gender" >
+                                            <option selected disabled>Gender</option>
                                             <option value="Nam">Nam</option>
                                             <option value="Nữ">Nữ</option>
                                         </select>
 
-                                        <input class="form-control mt-2" placeholder="Position" name="position" required>
                                         <select class="form-select mt-2" aria-label="Default select example" name="position">
-                                            <option selected>Position</option>
-                                            @foreach($employees as $employee)
-                                                <option value="{{ $employee->position }}">{{ $employee->position }}</option>
+                                            <option selected disabled>Position</option>
+                                            @foreach($position as $position)
+                                                <option value="{{ $position->id }}">{{ $position->position_name }}</option>
                                             @endforeach
                                         </select>
-                                        <input class="form-control mt-2" placeholder="Level" name="level" required>
+
+                                        <select class="form-select mt-2" aria-label="Default select example" name="level" >
+                                            <option selected disabled>Level</option>
+                                            @foreach($level as $level)
+                                                <option value="{{ $level->id }}">{{ $level->level_name }}</option>
+                                            @endforeach
+                                        </select>
 
 
                                     </div>
@@ -135,7 +169,9 @@
                             </form>
                         </div>
                     </div>
+
                 </tbody>
             </table>
         </main>
 @endsection
+

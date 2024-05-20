@@ -31,7 +31,7 @@
                         </div>
                     </td>
                     <td>
-                        <p class="text-muted mb-0">Level :{{$level->level_name}}</p>
+                        <p class="text-muted mb-0">{{$level->level_name}}</p>
                     </td>
                     <td>
                         <p class="fw-normal mb-1">{{$level->level_factor}}</p>
@@ -40,11 +40,11 @@
 
                     <td style="text-align: center">
                         <button class="btn btn-warning" data-bs-toggle="modal"
-                                data-bs-target="#modalUpdateLevel_{{$level->level_name}}">
+                                data-bs-target="#modalUpdateLevel_{{$level->id}}">
                             Edit
                         </button>
 
-                        <a href="/manager/level/delete/{{$level->id}}" class="btn btn-danger">Delete</a>
+                        <a href="/level/delete/{{$level->id}}" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
                 {{--    <!-- Modal -->--}}

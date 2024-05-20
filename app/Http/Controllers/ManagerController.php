@@ -10,39 +10,20 @@ class ManagerController extends Controller
 {
     function viewHome()
     {
-        //$employees = DB::table('users')->where('role', '=', 'employees')->get();
+
+        $level = DB::table('level')->get() ;
+        $position = DB::table('position')->get() ;
+
+
         $users = DB::table('users')
             ->join('position', 'users.position', '=', 'position.id')
             ->join('level', 'users.level', '=', 'level.id')
             ->select('users.*', 'position.position_name', 'level.level_name')
-            ->get();
-        $users = DB::table('users')
-            ->join('position', 'users.position', '=', 'position.id')
-            ->join('level', 'users.level', '=', 'level.id')
-            ->select('users.*', 'position.position_name', 'level.level_name')
-            ->union(function ($query) {
-                $query->select('users.*', 'position.position_name', 'level.level_name')
-                    ->from('users')
-                    ->join('position', 'users.position', '=', 'position.id')
-                    ->join('level', 'users.level', '=', 'level.id')
-                    ->where('role', '=', 'employees');
-            })
             ->get();
 
-        return view('manager.home', ['employees' => $users]);
-       // return view('manager.home', ['employees' => $employees,'users' => $users]);
+        return view('manager.home', ['users' => $users,'level'=>$level,'position'=>$position]);
     }
-    function viewLevel()
-    {
-        $level = DB::table('level')->get();
-        return view('manager.level', ['level' => $level]);
-    }
-    function viewPosition()
-    {
-        $position = DB::table('position')->get();
-        return view('manager.position', ['position' => $position]);
-    }
-//process employees
+
     function addEmployees(Request $request)
     {
         $name = $request->get('name');
@@ -88,7 +69,7 @@ class ManagerController extends Controller
     {
         $name = $request->get('name');
         $email = $request->get('email');
-        $password = $request->get('password');
+        $password = Hash::make($request->get('password'));
         $phone = $request->get('phone');
         $address = $request->get('address');
         $gender = $request->get('gender');
@@ -119,77 +100,5 @@ class ManagerController extends Controller
             ]);
 
         return redirect('/manager/home');
-    }
-//process level
-    function addLevel(Request $request)
-    {
-        $level_name = $request->get('level_name');
-        $factor = $request->get('factor');
-
-        $employees = DB::table('level')->insert([
-            'level_name' => $level_name,
-            'level_factor' => $factor,
-            'created_at' => now(),
-        ]);
-        if ($employees == false) {
-            dd("Thất bại!");
-        }
-        return redirect('/manager/level');
-    }
-    function deleteLevel($id)
-    {
-        DB::table('level')->delete($id);
-        return redirect('/manager/level');
-    }
-    function processEditLevel($id, Request $request)
-    {
-        $level_name = $request->get('level_name');
-        $factor = $request->get('factor');
-
-        DB::table('level')
-            ->where('id', '=', $id)
-            ->update([
-                'level_name' => $level_name,
-                'level_factor' => $factor,
-                'updated_at' => now(),
-            ]);
-
-        return redirect('/manager/level');
-    }
-//process position
-    function addPosition(Request $request)
-    {
-        $position_name = $request->get('position_name');
-        $salary = $request->get('salary');
-
-        $position = DB::table('position')->insert([
-            'position_name' => $position_name,
-            'salary' => $salary,
-            'created_at' => now(),
-        ]);
-        if ($position == false) {
-            dd("Thất bại!");
-        }
-        return redirect('/manager/position  ');
-    }
-    function deletePosition($id)
-    {
-        DB::table('position')->delete($id);
-        return redirect('/manager/position');
-    }
-    function processEditPosition($id, Request $request)
-    {
-        $level_name = $request->get('level_name');
-        $factor = $request->get('factor');
-
-        DB::table('level')
-            ->where('id', '=', $id)
-            ->update([
-                'level_name' => $level_name,
-                'level_factor' => $factor,
-                'updated_at' => now(),
-            ]);
-
-        return redirect('/manager/level');
     }
 }

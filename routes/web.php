@@ -34,29 +34,33 @@ Route::get('/manager/home',[\App\Http\Controllers\ManagerController::class,'view
 Route::get('/manager/employees',[\App\Http\Controllers\ManagerController::class,'viewHome']
 )->name('manager.home');
 
-Route::get('/manager/level',[\App\Http\Controllers\ManagerController::class,'viewLevel']
+Route::get('/manager/level',[\App\Http\Controllers\LevelController::class,'viewLevel']
 )->name('manager.level');
 
-Route::get('/manager/position',[\App\Http\Controllers\ManagerController::class,'viewPosition']
+Route::get('/manager/position',[\App\Http\Controllers\PositionController::class,'viewPosition']
 )->name('manager.position');
 //employees
 Route::post('/manager/employees/add',[\App\Http\Controllers\ManagerController::class,'addEmployees'])->name('process-add-employees') ;
 Route::get('/manager/employees/delete/{id}',[\App\Http\Controllers\ManagerController::class,'deleteEmployees'])->name('process-delete-employees') ;
 Route::post('/manager/employees/edit/{id}',[\App\Http\Controllers\ManagerController::class,'processEditEmployees'])->name('process-edit-employees') ;
+
 //level
-Route::post('/manager/level/add',[\App\Http\Controllers\ManagerController::class,'addLevel'])->name('process-add-level') ;
-Route::get('/manager/level/delete/{id}',[\App\Http\Controllers\ManagerController::class,'deleteLevel'])->name('process-delete-level') ;
-Route::post('/manager/level/edit/{id}',[\App\Http\Controllers\ManagerController::class,'processEditLevel'])->name('process-edit-level') ;
+Route::post('/level/add',[\App\Http\Controllers\LevelController::class,'addLevel'])->name('process-add-level') ;
+Route::get('/level/delete/{id}',[\App\Http\Controllers\LevelController::class,'deleteLevel'])->name('process-delete-level') ;
+Route::post('/level/edit/{id}',[\App\Http\Controllers\LevelController::class,'processEditLevel'])->name('process-edit-level') ;
+
 //position
-Route::post('/manager/position/add',[\App\Http\Controllers\ManagerController::class,'addPosition'])->name('process-add-position') ;
-Route::get('/manager/position/delete/{id}',[\App\Http\Controllers\ManagerController::class,'deletePosition'])->name('process-delete-position') ;
-Route::post('/manager/position/edit/{id}',[\App\Http\Controllers\ManagerController::class,'processEditPosition'])->name('process-edit-position') ;
+Route::post('/position/add',[\App\Http\Controllers\PositionController::class,'addPosition'])->name('process-add-position') ;
+Route::get('/position/delete/{id}',[\App\Http\Controllers\PositionController::class,'deletePosition'])->name('process-delete-position') ;
+Route::post('/position/edit/{id}',[\App\Http\Controllers\PositionController::class,'processEditPosition'])->name('process-edit-position') ;
+
 //chcek work
 Route::get('/manager/working_times',[\App\Http\Controllers\CheckWorkController::class,'viewHome']) ;
 Route::post('/manager/working_times/check/{id}',[\App\Http\Controllers\CheckWorkController::class,'check']) ;
 
 
 Route::get('/manager/analytics',[\App\Http\Controllers\AnalyticsController::class,'viewHome']) ;
+Route::get('/manager/analytics/delete/{id}',[\App\Http\Controllers\AnalyticsController::class,'check_delete']) ;
 
 //employees page
 Route::get('/employees/home', function () {

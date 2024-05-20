@@ -14,6 +14,7 @@
                 <th>Phone</th>
                 <th>Address</th>
                 <th style="text-align: center">Actions</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -34,8 +35,8 @@
                         </div>
                     </td>
                     <td>
-                        <p class="fw-normal mb-1">{{$data->position}}</p>
-                        <p class="text-muted mb-0">Level :{{$data->level}}</p>
+                        <p class="fw-normal mb-1">{{$data->position_name}}</p>
+                        <p class="text-muted mb-0">Level :{{$data->level_name}}</p>
                     </td>
                     <td>
                         <p class="fw-normal mb-1">{{$data->phone}}</p>
@@ -51,8 +52,13 @@
                         @else
                             <h3>Total Time: {{ $hours }} hours</h3>
                         @endif
+                    </td>
 
+                    <td>
+                        <a href="/manager/analytics/delete/{{$data->working_times_id}}" class="btn btn-danger">Delete</a>
+                    </td>
                     </tr>
+
 
             @endforeach
 

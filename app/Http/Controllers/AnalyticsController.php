@@ -10,9 +10,12 @@ class AnalyticsController extends Controller
 
     function viewHome()
     {
+
         $data = DB::table('users')
+            ->join('position', 'users.position', '=', 'position.id')
+            ->join('level', 'users.level', '=', 'level.id')
             ->join('working_times', 'users.id', '=', 'working_times.employee_id')
-            ->select('users.*', 'working_times.start_time', 'working_times.end_time')
+            ->select('users.*','working_times.id as working_times_id', 'working_times.start_time', 'working_times.end_time', 'position.position_name', 'level.level_name')
             ->get();
 
         $timeDifference = 0;
@@ -32,9 +35,14 @@ class AnalyticsController extends Controller
         // Chuyển đổi thành giờ, phút, giây
         $hours = floor($timeDifference / 3600);
         $minutes = floor(($timeDifference % 3600) / 60);
-        $seconds = $timeDifference % 60;
 
         // Trả về kết quả
-        return view('manager.analytics',['data' => $data] ,compact('hours', 'minutes', 'seconds'));
+        return view('manager.analytics',['data' => $data] ,compact('hours', 'minutes'));
+    }
+
+    function check_delete($id)
+    {
+        DB::table('working_times')->delete($id);
+        return redirect('/manager/analytics');
     }
 }
