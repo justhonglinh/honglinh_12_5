@@ -54,7 +54,7 @@
                         </td>
                     </tr>
 
-                @endforeach
+
                 {{--    <!-- Modal -->--}}
                 {{--    {--edit--}}
                 <div class="modal fade" id="modalUpdateEmployees_{{$employees->id}}" data-bs-backdrop="static"
@@ -90,7 +90,7 @@
                         </form>
                     </div>
                 </div>
-
+                @endforeach
                 <!-- Modal -->
                     {{--add--}}
                     <div class="modal fade" id="modalCreateEmployees" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -117,12 +117,12 @@
                                         </select>
 
                                         <input class="form-control mt-2" placeholder="Position" name="position" required>
-                                        <select class="form-select mt-2" aria-label="Default select example" name="position">
-                                            <option selected>Position</option>
-                                            @foreach($employees as $employee)
-                                                <option value="{{ $employee->position }}">{{ $employee->position }}</option>
-                                            @endforeach
-                                        </select>
+{{--                                        <select class="form-select mt-2" aria-label="Default select example" name="position">--}}
+{{--                                            <option selected>Position</option>--}}
+{{--                                            @foreach($employees['position'] as $employee)--}}
+{{--                                                <option value="{{ $employee->position }}">{{ $employee->position }}</option>--}}
+{{--                                            @endforeach--}}
+{{--                                        </select>--}}
                                         <input class="form-control mt-2" placeholder="Level" name="level" required>
 
 
@@ -135,7 +135,9 @@
                             </form>
                         </div>
                     </div>
+
                 </tbody>
             </table>
         </main>
 @endsection
+
