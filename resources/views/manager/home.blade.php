@@ -19,7 +19,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($employees as $employees)
+                @foreach($users as $employees)
                     <tr>
                         <td>
                             <div class="d-flex align-items-center">
@@ -36,8 +36,8 @@
                             </div>
                         </td>
                         <td>
-                            <p class="fw-normal mb-1">{{$employees->position}}</p>
-                            <p class="text-muted mb-0">Level :{{$employees->level}}</p>
+                            <p class="fw-normal mb-1">{{$employees->position_name}}</p>
+                            <p class="text-muted mb-0">Level :{{$employees->level_name}}</p>
                         </td>
                         <td>
                             <p class="fw-normal mb-1">{{$employees->phone}}</p>
@@ -119,8 +119,8 @@
                                         <input class="form-control mt-2" placeholder="Position" name="position" required>
                                         <select class="form-select mt-2" aria-label="Default select example" name="position">
                                             <option selected>Position</option>
-                                            @foreach($employees as $employee)
-                                                <option value="{{ $employee->position }}">{{ $employee->position }}</option>
+                                            @foreach($position as $pos)
+                                                <option value="{{ $pos->position_name }}">{{ $pos->position_name }}</option>
                                             @endforeach
                                         </select>
                                         <input class="form-control mt-2" placeholder="Level" name="level" required>
