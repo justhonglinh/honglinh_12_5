@@ -34,17 +34,17 @@ class PositionController extends Controller
     }
     function processEditPosition($id, Request $request)
     {
-        $level_name = $request->get('level_name');
-        $factor = $request->get('factor');
+        $position_name = $request->get('position_name');
+        $salary = $request->get('salary');
 
-        DB::table('level')
+        DB::table('position')
             ->where('id', '=', $id)
             ->update([
-                'level_name' => $level_name,
-                'level_factor' => $factor,
+                'position_name' => $position_name,
+                'salary' => $salary,
                 'updated_at' => now(),
             ]);
 
-        return redirect('/manager/level');
+        return redirect('/manager/position');
     }
 }

@@ -68,8 +68,6 @@ class ManagerController extends Controller
     function processEditEmployees($id, Request $request)
     {
         $name = $request->get('name');
-        $email = $request->get('email');
-        $password = Hash::make($request->get('password'));
         $phone = $request->get('phone');
         $address = $request->get('address');
         $gender = $request->get('gender');
@@ -86,8 +84,6 @@ class ManagerController extends Controller
             ->update([
                 'name' => $name,
                 'avatar_url' => $avatar_url,
-                'email' => $email,
-                'password' => $password,
                 'phone' => $phone,
                 'address' => $address,
                 'gender' => $gender,

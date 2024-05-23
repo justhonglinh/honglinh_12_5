@@ -48,12 +48,12 @@
 
                             <label for="startDateTime">Ngày giờ bắt đầu:</label>
                             <br>
-                            <input type="datetime-local" id="startDateTime" name="startDateTime">
+                            <input type="datetime-local" id="startDateTime" name="start_time">
                             <br><br>
 
                             <label for="endDateTime">Ngày giờ kết thúc:</label>
                             <br>
-                            <input type="datetime-local" id="endDateTime" name="endDateTime">
+                            <input type="datetime-local" id="endDateTime" name="end_time">
                             <br><br>
 
                             <button type="submit">Tính</button>

@@ -31,7 +31,7 @@
                         </div>
                     </td>
                     <td>
-                        <p class="text-muted mb-0">Position :{{$position->position_name}}</p>
+                        <p class="text-muted mb-0">{{$position->position_name}}</p>
                     </td>
                     <td>
                         <p class="fw-normal mb-1">{{$position->salary}}/1 hours</p>
@@ -61,8 +61,8 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Name level<input class="form-control" type="text" value="" name="name" required>
-                                    Salary Factor<input class="form-control mt-2" type="range" value="" min="1" max="2" name="email" required>
+                                    Name level<input class="form-control"  value="{{$position->position_name}}" type="text"  name="position_name" required>
+                                    Salary Factor<input class="form-control mt-2" value="{{$position->salary}}" type="number" name="salary" min="1.0" step="1" required>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>

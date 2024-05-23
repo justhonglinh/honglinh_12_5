@@ -54,7 +54,6 @@
                         </td>
                     </tr>
 
-                @endforeach
                 {{--    <!-- Modal -->--}}
                 {{--    {--edit--}}
                 <div class="modal fade" id="modalUpdateEmployees_{{$employees->id}}" data-bs-backdrop="static"
@@ -70,26 +69,44 @@
                                 </div>
                                 <div class="modal-body">
                                     Họ và tên<input class="form-control" value="{{$employees->name}}" name="name" required>
-                                    Email<input class="form-control mt-2" type="email" value="{{$employees->email}}" name="email" required>
-                                    Password<input class="form-control mt-2" value="{{$employees->password}}" name="password" required>
                                     Số điện thoại<input class="form-control mt-2" value="{{$employees->phone}}" name="phone" required>
                                     Địa chỉ<input class="form-control mt-2" value="{{$employees->address}}" name="address" required>
 
                                     Ảnh <input class="form-control mt-2" type="file" name="avatar_url"  required accept="image/*">
 
-                                    Giới tính<input class="form-control mt-2" value="{{$employees->gender}}" name="gender" required>
-                                    Vị trí<input class="form-control mt-2" value="{{$employees->position}}" name="position" required>
-                                    Cấp bậc<input class="form-control mt-2" value="{{$employees->level}}" name="level" required>
+                                    Giới tính
+                                    <select class="form-select mt-2" aria-label="Default select example" name="gender">
+                                        <option selected disabled>Gender</option>
+                                        <option value="Nam">Nam</option>
+                                        <option value="Nữ">Nữ</option>
+                                    </select>
+
+                                    Vị trí
+                                    <select class="form-select mt-2" aria-label="Default select example" name="position">
+                                        <option selected disabled>Position</option>
+                                        @foreach($position as $pos)
+                                            <option value="{{ $pos->id }}">{{ $pos->position_name }}</option>
+                                        @endforeach
+                                    </select>
+
+                                    Cấp bậc
+                                    <select class="form-select mt-2" aria-label="Default select example" name="level">
+                                        <option selected disabled>Level</option>
+                                        @foreach($level as $lev)
+                                            <option value="{{ $lev->id }}">{{ $lev->level_name }}</option>
+                                        @endforeach
+                                    </select>
 
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                    <button type="submit" class="btn btn-primary">thay doi</button>
+                                    <button type="submit" class="btn btn-primary">Thay Đổi</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
+                @endforeach
 
                 <!-- Modal -->
                     {{--add--}}
@@ -110,22 +127,26 @@
                                         <input class="form-control mt-2" placeholder="Số điện thoại" name="phone" required>
                                         <input class="form-control mt-2" placeholder="Address" name="address" required>
                                         <input class="form-control mt-2" type="file" name="avatar_url" required accept="image/*">
+
                                         <select class="form-select mt-2" aria-label="Default select example" name="gender">
-                                            <option selected >Gender</option>
+                                            <option selected disabled>Gender</option>
                                             <option value="Nam">Nam</option>
                                             <option value="Nữ">Nữ</option>
                                         </select>
 
-                                        <input class="form-control mt-2" placeholder="Position" name="position" required>
                                         <select class="form-select mt-2" aria-label="Default select example" name="position">
-                                            <option selected>Position</option>
+                                            <option selected disabled>Position</option>
                                             @foreach($position as $pos)
-                                                <option value="{{ $pos->position_name }}">{{ $pos->position_name }}</option>
+                                                <option value="{{ $pos->id }}">{{ $pos->position_name }}</option>
                                             @endforeach
                                         </select>
-                                        <input class="form-control mt-2" placeholder="Level" name="level" required>
 
-
+                                        <select class="form-select mt-2" aria-label="Default select example" name="level">
+                                            <option selected disabled>Level</option>
+                                            @foreach($level as $lev)
+                                                <option value="{{ $lev->id }}">{{ $lev->level_name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('employee_id');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
+            $table->integer('total') ;
             $table->timestamps();
 
             $table->foreign('employee_id')->references('id')->on('users')->onDelete('cascade');
