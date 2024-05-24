@@ -33,8 +33,13 @@ class CheckWorkController extends Controller
         $hours = floor($timeDifference / 3600);
         $minutes = floor(($timeDifference % 3600) / 60);
 
-        $newHours = $hours + ($minutes >= 45 ? 1 : 0.5);
-
+        if ($minutes >= 45) {
+            $newHours = $hours + 1;
+        } elseif ($minutes < 20) {
+            $newHours = $hours;
+        } else {
+            $newHours = $hours + 0.5;
+        }
         DB::table('working_times')->insert([
             'employee_id' => $id ,
            'start_time' => $startTime,

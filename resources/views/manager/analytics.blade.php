@@ -44,14 +44,7 @@
                     <td>{{$data->address}}</td>
 
                     <td style="text-align: center">
-
-                        <p>Start time :{{$data->start_time}}</p>
-                        <p>End time :{{$data->end_time}}</p>
-                        @if($minutes >= 45 )
-                            <h3>Total Time: {{ $hours+1 }} hours</h3>
-                        @else
-                            <h3>Total Time: {{ $hours }} hours</h3>
-                        @endif
+                        <h1>{{$data->total}}</h1>
                     </td>
 
                     <td>
