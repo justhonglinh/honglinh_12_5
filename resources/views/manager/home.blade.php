@@ -83,7 +83,7 @@
 
                                     Vị trí
                                     <select class="form-select mt-2" aria-label="Default select example" name="position">
-                                        <option selected disabled>Position</option>
+                                        <option value="$employees->position_name" selected disabled>{{$employees->position_name}}</option>
                                         @foreach($position as $pos)
                                             <option value="{{ $pos->id }}">{{ $pos->position_name }}</option>
                                         @endforeach
@@ -91,7 +91,7 @@
 
                                     Cấp bậc
                                     <select class="form-select mt-2" aria-label="Default select example" name="level">
-                                        <option selected disabled>Level</option>
+                                        <option value="{{$employees->level_name}}" selected disabled>{{$employees->level_name}}</option>
                                         @foreach($level as $lev)
                                             <option value="{{ $lev->id }}">{{ $lev->level_name }}</option>
                                         @endforeach
@@ -100,8 +100,24 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                    <button type="submit" class="btn btn-primary">Thay Đổi</button>
+                                    <button type="submit" id="editButton" class="btn btn-primary">Thay Đổi</button>
                                 </div>
+                                {{--edit employees--}}
+                                <script>
+                                    const editButton = document.getElementById('editButton');
+
+                                    editButton.addEventListener('click', function() {
+                                        // Hiển thị cảnh báo
+                                        const result = confirm('Bạn có chắc chắn muốn thay đổi dữ liệu nhân viên ?');
+                                        if (result === true) {
+                                            alert('Dữ liệu mới đã được thêm thành công!');
+                                        } else {
+                                            alert('Thêm dữ liệu mới đã bị hủy!');
+                                            editButton.disabled = true;
+                                        }
+                                    });
+                                </script>
+
                             </div>
                         </form>
                     </div>
@@ -150,8 +166,9 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                        <button type="submit" class="btn btn-primary">Tạo mới</button>
+                                        <button type="submit" class="btn btn-primary" id="addButton">Tạo mới</button>
                                     </div>
+
                                 </div>
                             </form>
                         </div>
@@ -160,3 +177,19 @@
             </table>
         </main>
 @endsection
+
+{{--add employees--}}
+<script>
+    const addButton = document.getElementById('addButton');
+
+    addButton.addEventListener('click', function() {
+        // Hiển thị cảnh báo
+        const result = confirm('Bạn có chắc chắn muốn thêm dữ liệu nhân viên mới?');
+        if (result === true) {
+            alert('Dữ liệu mới đã được thêm thành công!');
+        } else {
+            alert('Thêm dữ liệu mới đã bị hủy!');
+            addButton.disabled = true;
+        }
+    });
+</script>
