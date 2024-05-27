@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Manager;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -14,12 +15,11 @@ class ManagerController extends Controller
         $level = DB::table('level')->get() ;
         $position = DB::table('position')->get() ;
 
-
         $users = DB::table('users')
             ->join('position', 'users.position', '=', 'position.id')
             ->join('level', 'users.level', '=', 'level.id')
             ->select('users.*', 'position.position_name', 'level.level_name')
-            ->get();
+            ->paginate(10);
 
         return view('manager.home', ['users' => $users,'level'=>$level,'position'=>$position]);
     }

@@ -5,7 +5,14 @@
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Bảng</h1>
             </div>
+
+            <div class="input-group">
+                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init>search</button>
+            </div>
+
             <h2>Danh sách nhân viên</h2>
+
             <table class="table align-middle mb-0 bg-white">
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCreateEmployees">Thêm mới</button>
 
@@ -50,7 +57,20 @@
                                 Edit
                             </button>
 
-                            <a href="/manager/employees/delete/{{$employees->id}}" class="btn btn-danger">Delete</a>
+                            <a href="/manager/employees/delete/{{$employees->id}}" id="deleteButton" class="btn btn-danger">Delete</a>
+                            <script>
+                                const deleteButton = document.getElementById('deleteButton');
+                                deleteButton.addEventListener('click', function() {
+                                    const result = confirm('Bạn có chắc chắn muốn thêm dữ liệu mới?');
+
+                                    if (result === true) {
+                                        alert('Dữ liệu mới đã được thêm thành công!');
+                                    } else {
+                                        alert('Thêm dữ liệu mới đã bị hủy!');
+                                        deleteButton.disabled = true;
+                                    }
+                                });
+                            </script>
                         </td>
                     </tr>
 
@@ -76,14 +96,14 @@
 
                                     Giới tính
                                     <select class="form-select mt-2" aria-label="Default select example" name="gender">
-                                        <option selected disabled>Gender</option>
+                                        <option  value={{$employees->gender}} selected disabled>{{$employees->gender}}</option>
                                         <option value="Nam">Nam</option>
                                         <option value="Nữ">Nữ</option>
                                     </select>
 
                                     Vị trí
                                     <select class="form-select mt-2" aria-label="Default select example" name="position">
-                                        <option value="$employees->position_name" selected disabled>{{$employees->position_name}}</option>
+                                        <option value={{$employees->position}} selected disabled>{{$employees->position_name}}</option>
                                         @foreach($position as $pos)
                                             <option value="{{ $pos->id }}">{{ $pos->position_name }}</option>
                                         @endforeach
@@ -91,7 +111,7 @@
 
                                     Cấp bậc
                                     <select class="form-select mt-2" aria-label="Default select example" name="level">
-                                        <option value="{{$employees->level_name}}" selected disabled>{{$employees->level_name}}</option>
+                                        <option value="{{$employees->level}}" selected disabled>{{$employees->level_name}}</option>
                                         @foreach($level as $lev)
                                             <option value="{{ $lev->id }}">{{ $lev->level_name }}</option>
                                         @endforeach
@@ -123,6 +143,7 @@
                     </div>
                 </div>
                 @endforeach
+
 
                 <!-- Modal -->
                     {{--add--}}
@@ -168,6 +189,20 @@
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                                         <button type="submit" class="btn btn-primary" id="addButton">Tạo mới</button>
                                     </div>
+                                    <script>
+                                        const addButton = document.getElementById('addButton');
+
+                                        addButton.addEventListener('click', function() {
+                                            // Hiển thị cảnh báo
+                                            const result = confirm('Bạn có chắc chắn muốn thêm dữ liệu nhân viên mới?');
+                                            if (result === true) {
+                                                alert('Dữ liệu mới đã được thêm thành công!');
+                                            } else {
+                                                alert('Thêm dữ liệu mới đã bị hủy!');
+                                                addButton.disabled = true;
+                                            }
+                                        });
+                                    </script>
 
                                 </div>
                             </form>
@@ -175,21 +210,29 @@
                     </div>
                 </tbody>
             </table>
+            @if ($users->lastPage() > 1)
+                <ul class="pagination">
+                    <li class="{{ ($users->currentPage() == 1) ? 'disabled' : '' }}">
+                        <a href="{{ $users->previousPageUrl() }}" class="page-link" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+
+                    @for ($i = 1; $i <= $users->lastPage(); $i++)
+                        <li class="{{ ($users->currentPage() == $i) ? 'active' : '' }}">
+                            <a href="{{ $users->url($i) }}" class="page-link">{{ $i }}</a>
+                        </li>
+                    @endfor
+
+                    <li class="{{ ($users->currentPage() == $users->lastPage()) ? 'disabled' : '' }}">
+                        <a href="{{ $users->nextPageUrl() }}" class="page-link" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            @endif
         </main>
+
 @endsection
 
-{{--add employees--}}
-<script>
-    const addButton = document.getElementById('addButton');
 
-    addButton.addEventListener('click', function() {
-        // Hiển thị cảnh báo
-        const result = confirm('Bạn có chắc chắn muốn thêm dữ liệu nhân viên mới?');
-        if (result === true) {
-            alert('Dữ liệu mới đã được thêm thành công!');
-        } else {
-            alert('Thêm dữ liệu mới đã bị hủy!');
-            addButton.disabled = true;
-        }
-    });
-</script>

@@ -7,6 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Manager Site</title>
     <link rel="stylesheet" href="{{asset('bootstrap-5.3.3/css/bootstrap.min.css')}}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.datatables.net/v/bs5/dt-2.0.3/datatables.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.datatables.net/v/bs5/dt-2.0.3/datatables.min.js"></script>
+
     <style>
         body {
             background-color: #fbfbfb;
@@ -67,7 +73,7 @@
                                 <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Nhân viên </span>
                             </a>
 
-                            <a href="/manager/analytics" class="list-group-item list-group-item-action py-2 ripple">
+                            <a href="/manager/history" class="list-group-item list-group-item-action py-2 ripple">
                                 <i class="fas fa-chart-line fa-fw me-3"></i><span>History</span>
                             </a>
 
@@ -105,45 +111,8 @@
                         </div>
                     </div>
                 </nav>
-                <!-- Sidebar -->
 
-{{--                <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">--}}
-{{--                    <div class="container-fluid">--}}
-
-{{--                        <a class="navbar-brand" href="#">--}}
-{{--                            <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="25"/>--}}
-{{--                        </a>--}}
-{{--                        <form class="d-none d-md-flex input-group w-auto my-auto">--}}
-{{--                            <input--}}
-{{--                                autocomplete="off"--}}
-{{--                                type="search"--}}
-{{--                                class="form-control rounded"--}}
-{{--                                placeholder='Search (ctrl + "/" to focus)'--}}
-{{--                                style="min-width: 225px;"--}}
-{{--                            />--}}
-{{--                            <span class="input-group-text border-0"><i class="fas fa-search"></i></span>--}}
-{{--                        </form>--}}
-
-{{--                        <ul class="navbar-nav ms-auto d-flex flex-row">--}}
-{{--                            <li class="nav-item dropdown">--}}
-{{--                                <div class="d-flex flex-row align-items-center justify-content-center">--}}
-{{--                                    <form action="" class="me-3">--}}
-{{--                                        {{\Illuminate\Support\Facades\Auth::user()->name}}--}}
-{{--                                    </form>--}}
-
-{{--                                    <form method="post" action="{{route('logout')}}">--}}
-{{--                                        @csrf--}}
-{{--                                        <button type="submit" class="btn btn-outline-dark me-2">Logout</button>--}}
-{{--                                    </form>--}}
-{{--                                </div>--}}
-
-{{--                            </li>--}}
-
-{{--                        </ul>--}}
-{{--                    </div>--}}
-{{--                </nav>--}}
             </header>
-
             @yield('content')
         </main>
     </div>

@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
+namespace App\Http\Controllers\Manager;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
-class AnalyticsController extends Controller
+class HistoryController extends Controller
 {
 
     function viewHome()
