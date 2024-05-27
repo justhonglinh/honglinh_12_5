@@ -52,26 +52,30 @@
                         <td>{{$employees->address}}</td>
 
                         <td style="text-align: center">
-                            <button class="btn btn-warning" data-bs-toggle="modal"
-                                    data-bs-target="#modalUpdateEmployees_{{$employees->id}}">
+                            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalUpdateEmployees_{{ $employees->id }}">
                                 Edit
                             </button>
 
-                            <a href="/manager/employees/delete/{{$employees->id}}" id="deleteButton" class="btn btn-danger">Delete</a>
-                            <script>
-                                const deleteButton = document.getElementById('deleteButton');
-                                deleteButton.addEventListener('click', function() {
-                                    const result = confirm('Bạn có chắc chắn muốn thêm dữ liệu mới?');
-
-                                    if (result === true) {
-                                        alert('Dữ liệu mới đã được thêm thành công!');
-                                    } else {
-                                        alert('Thêm dữ liệu mới đã bị hủy!');
-                                        deleteButton.disabled = true;
-                                    }
-                                });
-                            </script>
+                            <a href="/manager/employees/delete/{{ $employees->id }}" id="deleteButton" class="btn btn-danger">Delete</a>
                         </td>
+
+                        <!-- Move the script to the bottom of the HTML file, just before the closing </body> tag -->
+                        <script>
+                            const deleteButton = document.getElementById('deleteButton');
+
+                            deleteButton.addEventListener('click', function(event) {
+                                event.preventDefault();
+
+                                // Display confirmation
+                                const result = confirm('Are you sure you want to delete this employee?');
+
+                                if (result === true) {
+                                    window.location.href = deleteButton.getAttribute('href');
+                                } else {
+                                    alert('Delete operation canceled!');
+                                }
+                            });
+                        </script>
                     </tr>
 
                 {{--    <!-- Modal -->--}}
@@ -144,6 +148,8 @@
                 </div>
                 @endforeach
 
+                {{$users->link()}}
+
 
                 <!-- Modal -->
                     {{--add--}}
@@ -210,27 +216,6 @@
                     </div>
                 </tbody>
             </table>
-            @if ($users->lastPage() > 1)
-                <ul class="pagination">
-                    <li class="{{ ($users->currentPage() == 1) ? 'disabled' : '' }}">
-                        <a href="{{ $users->previousPageUrl() }}" class="page-link" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-
-                    @for ($i = 1; $i <= $users->lastPage(); $i++)
-                        <li class="{{ ($users->currentPage() == $i) ? 'active' : '' }}">
-                            <a href="{{ $users->url($i) }}" class="page-link">{{ $i }}</a>
-                        </li>
-                    @endfor
-
-                    <li class="{{ ($users->currentPage() == $users->lastPage()) ? 'disabled' : '' }}">
-                        <a href="{{ $users->nextPageUrl() }}" class="page-link" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            @endif
         </main>
 
 @endsection
