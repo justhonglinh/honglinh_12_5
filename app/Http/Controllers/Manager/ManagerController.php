@@ -6,14 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-
 class ManagerController extends Controller
 {
+
     function viewHome()
     {
-
-        $level = DB::table('level')->get() ;
-        $position = DB::table('position')->get() ;
+        $level = DB::table('level')->get();
+        $position = DB::table('position')->get();
 
         $users = DB::table('users')
             ->join('position', 'users.position', '=', 'position.id')
@@ -21,7 +20,7 @@ class ManagerController extends Controller
             ->select('users.*', 'position.position_name', 'level.level_name')
             ->paginate(10);
 
-        return view('manager.home', ['users' => $users,'level'=>$level,'position'=>$position]);
+        return view('manager.home', compact('users', 'level', 'position'));
     }
 
     function addEmployees(Request $request)

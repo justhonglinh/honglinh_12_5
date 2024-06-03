@@ -5,16 +5,12 @@
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Bảng</h1>
             </div>
-
-            <div class="input-group">
-                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init>search</button>
-            </div>
-
             <h2>Danh sách nhân viên</h2>
 
-            <table class="table align-middle mb-0 bg-white">
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCreateEmployees">Thêm mới</button>
+            <br>
+            <table class="table align-middle mb-0 bg-white" id="users">
+
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCreateEmployees">Thêm mới</button>
 
                 <thead class="bg-light">
                 <tr >
@@ -26,6 +22,13 @@
                 </tr>
                 </thead>
                 <tbody>
+                <script>
+                    new DataTable('#employees', {
+                        info: false,
+                        ordering: false,
+                        paging: false
+                    });
+                </script>
                 @foreach($users as $employees)
                     <tr>
                         <td>
@@ -55,27 +58,8 @@
                             <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalUpdateEmployees_{{ $employees->id }}">
                                 Edit
                             </button>
-
                             <a href="/manager/employees/delete/{{ $employees->id }}" id="deleteButton" class="btn btn-danger">Delete</a>
                         </td>
-
-                        <!-- Move the script to the bottom of the HTML file, just before the closing </body> tag -->
-                        <script>
-                            const deleteButton = document.getElementById('deleteButton');
-
-                            deleteButton.addEventListener('click', function(event) {
-                                event.preventDefault();
-
-                                // Display confirmation
-                                const result = confirm('Are you sure you want to delete this employee?');
-
-                                if (result === true) {
-                                    window.location.href = deleteButton.getAttribute('href');
-                                } else {
-                                    alert('Delete operation canceled!');
-                                }
-                            });
-                        </script>
                     </tr>
 
                 {{--    <!-- Modal -->--}}
@@ -120,103 +104,126 @@
                                             <option value="{{ $lev->id }}">{{ $lev->level_name }}</option>
                                         @endforeach
                                     </select>
-
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                                     <button type="submit" id="editButton" class="btn btn-primary">Thay Đổi</button>
                                 </div>
-                                {{--edit employees--}}
-                                <script>
-                                    const editButton = document.getElementById('editButton');
-
-                                    editButton.addEventListener('click', function() {
-                                        // Hiển thị cảnh báo
-                                        const result = confirm('Bạn có chắc chắn muốn thay đổi dữ liệu nhân viên ?');
-                                        if (result === true) {
-                                            alert('Dữ liệu mới đã được thêm thành công!');
-                                        } else {
-                                            alert('Thêm dữ liệu mới đã bị hủy!');
-                                            editButton.disabled = true;
-                                        }
-                                    });
-                                </script>
-
                             </div>
                         </form>
                     </div>
                 </div>
                 @endforeach
+                <script>
+                    $(document).ready( function () {
+                        $('#users').DataTable();
+                    } );
+                </script>
 
-                {{$users->link()}}
-
-
-                <!-- Modal -->
-                    {{--add--}}
-                    <div class="modal fade" id="modalCreateEmployees" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <form method="POST" action="{{route('process-add-employees')}}" enctype="multipart/form-data">
-                                @csrf
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Thêm nhân viên mới</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <input class="form-control" placeholder="Họ và tên" name="name" required>
-                                        <input class="form-control mt-2" type="email" placeholder="Email" name="email" required>
-                                        <input class="form-control mt-2" type="password" placeholder="Mật khẩu" name="password" required>
-                                        <input class="form-control mt-2" placeholder="Số điện thoại" name="phone" required>
-                                        <input class="form-control mt-2" placeholder="Address" name="address" required>
-                                        <input class="form-control mt-2" type="file" name="avatar_url" required accept="image/*">
-
-                                        <select class="form-select mt-2" aria-label="Default select example" name="gender">
-                                            <option selected disabled>Gender</option>
-                                            <option value="Nam">Nam</option>
-                                            <option value="Nữ">Nữ</option>
-                                        </select>
-
-                                        <select class="form-select mt-2" aria-label="Default select example" name="position">
-                                            <option selected disabled>Position</option>
-                                            @foreach($position as $pos)
-                                                <option value="{{ $pos->id }}">{{ $pos->position_name }}</option>
-                                            @endforeach
-                                        </select>
-
-                                        <select class="form-select mt-2" aria-label="Default select example" name="level">
-                                            <option selected disabled>Level</option>
-                                            @foreach($level as $lev)
-                                                <option value="{{ $lev->id }}">{{ $lev->level_name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                        <button type="submit" class="btn btn-primary" id="addButton">Tạo mới</button>
-                                    </div>
-                                    <script>
-                                        const addButton = document.getElementById('addButton');
-
-                                        addButton.addEventListener('click', function() {
-                                            // Hiển thị cảnh báo
-                                            const result = confirm('Bạn có chắc chắn muốn thêm dữ liệu nhân viên mới?');
-                                            if (result === true) {
-                                                alert('Dữ liệu mới đã được thêm thành công!');
-                                            } else {
-                                                alert('Thêm dữ liệu mới đã bị hủy!');
-                                                addButton.disabled = true;
-                                            }
-                                        });
-                                    </script>
-
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                 </tbody>
             </table>
+
+            <!-- Modal -->
+            {{--add--}}
+            <div class="modal fade" id="modalCreateEmployees" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                             aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <form method="POST" action="{{route('process-add-employees')}}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Thêm nhân viên mới</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <input class="form-control" placeholder="Họ và tên" name="name" required>
+                                <input class="form-control mt-2" type="email" placeholder="Email" name="email" required>
+                                <input class="form-control mt-2" type="password" placeholder="Mật khẩu" name="password" required>
+                                <input class="form-control mt-2" placeholder="Số điện thoại" name="phone" required>
+                                <input class="form-control mt-2" placeholder="Address" name="address" required>
+                                <input class="form-control mt-2" type="file" name="avatar_url" required accept="image/*">
+
+                                <select class="form-select mt-2" aria-label="Default select example" name="gender">
+                                    <option selected disabled>Gender</option>
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                </select>
+
+                                <select class="form-select mt-2" aria-label="Default select example" name="position">
+                                    <option selected disabled>Position</option>
+                                    @foreach($position as $pos)
+                                        <option value="{{ $pos->id }}">{{ $pos->position_name }}</option>
+                                    @endforeach
+                                </select>
+
+                                <select class="form-select mt-2" aria-label="Default select example" name="level">
+                                    <option selected disabled>Level</option>
+                                    @foreach($level as $lev)
+                                        <option value="{{ $lev->id }}">{{ $lev->level_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                <button type="submit" class="btn btn-primary" id="addButton">Tạo mới</button>
+                            </div>
+
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
         </main>
+
+        <script>
+            const deleteButtons = document.querySelectorAll('.deleteButton');
+
+            deleteButtons.forEach(function(deleteButton) {
+                deleteButton.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    const result = confirm('Are you sure you want to delete this employee?');
+
+                    if (result === true) {
+                        window.location.href = deleteButton.getAttribute('href');
+                    } else {
+                        alert('Delete operation canceled!');
+                    }
+                });
+            });
+        </script>
+
+        <script>
+            const addButton = document.getElementById('addButton');
+
+            addButton.addEventListener('click', function() {
+                // Hiển thị cảnh báo
+                const result = confirm('Bạn có chắc chắn muốn thêm dữ liệu nhân viên mới?');
+                if (result === true) {
+                    alert('Dữ liệu mới đã được thêm thành công!');
+                } else {
+                    alert('Thêm dữ liệu mới đã bị hủy!');
+                    addButton.disabled = true;
+                }
+            });
+        </script>
+
+        <script>
+            const editButton = document.getElementById('editButton');
+
+            editButton.addEventListener('click', function() {
+                // Hiển thị cảnh báo
+                const result = confirm('Bạn có chắc chắn muốn thay đổi dữ liệu nhân viên ?');
+                if (result === true) {
+                    alert('Dữ liệu mới đã được thêm thành công!');
+                } else {
+                    alert('Thêm dữ liệu mới đã bị hủy!');
+                    editButton.disabled = true;
+                }
+            });
+        </script>
 
 @endsection
 

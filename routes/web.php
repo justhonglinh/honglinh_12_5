@@ -38,6 +38,7 @@ Route::get('/manager/level',[\App\Http\Controllers\Manager\LevelController::clas
 
 Route::get('/manager/position',[\App\Http\Controllers\Manager\PositionController::class,'viewPosition']
 )->name('manager.position');
+
 //employees
 Route::post('/manager/employees/add',[\App\Http\Controllers\Manager\ManagerController::class,'addEmployees'])->name('process-add-employees') ;
 Route::get('/manager/employees/delete/{id}',[\App\Http\Controllers\Manager\ManagerController::class,'deleteEmployees'])->name('process-delete-employees') ;

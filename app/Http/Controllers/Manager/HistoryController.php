@@ -18,12 +18,12 @@ class HistoryController extends Controller
             ->get();
 
         // Trả về kết quả
-        return view('manager.analytics',['data' => $data]);
+        return view('manager.history',['data' => $data]);
     }
 
     function check_delete($id)
     {
         DB::table('working_times')->delete($id);
-        return redirect('/manager/analytics');
+        return redirect('/manager/history');
     }
 }
