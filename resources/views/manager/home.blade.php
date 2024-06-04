@@ -99,15 +99,15 @@
                 </div>
             @endforeach
         </tbody>
-        <script>
-            $(document).ready( function () {
-                $('#users').DataTable();
-            } );
-        </script>
+
     </table>
+    <br>
 
-
-
+    <script>
+        $(document).ready( function () {
+            $('#users').DataTable();
+        } );
+    </script>
 {{----}}
             <!-- Modal -->
             {{--add--}}

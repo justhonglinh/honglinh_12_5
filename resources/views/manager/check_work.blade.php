@@ -1,20 +1,12 @@
 @extends('manager.layout')
 
 @section('content')
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Bảng</h1>
         </div>
 
-        <form action="/search" method="POST">
-            <div class="input-group">
-                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init>search</button>
-            </div>
-        </form>
-
         <h2>Danh sách nhân viên</h2>
-        <table class="table align-middle mb-0 bg-white">
+        <table class="table align-middle mb-0 bg-white" id="work">
             <thead class="bg-light">
             <tr >
                 <th>Name</th>
@@ -78,10 +70,11 @@
                     </tr>
 
             @endforeach
-
-
             </tbody>
         </table>
-
-    </main>
+        <script>
+            $(document).ready( function () {
+                $('#work').DataTable();
+            } );
+        </script>
 @endsection
