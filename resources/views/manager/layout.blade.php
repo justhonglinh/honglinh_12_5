@@ -33,6 +33,8 @@
     <!-- Template Main CSS File -->
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
 
+{{--    font awesome--}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style id="apexcharts-css">@keyframes opaque {
                                    0% {
                                        opacity: 0
@@ -166,32 +168,32 @@
 
         <li class="nav-item">
             <a class="nav-link collapse " href="/manager/working_times">
-                <i class="bi bi-grid"></i>
+                <i class="fa-solid fa-calendar-check"></i>
                 <span>Chấm Công</span>
             </a>
 
             <a class="nav-link collapse" href="/manager/home">
-                <i class=""></i>
+                <i class="fa-solid fa-users"></i>
                 <span>Nhân viên </span>
             </a>
 
             <a class="nav-link " href="/manager/history">
-                <i class="bi bi-grid"></i>
+                <i class="fa-solid fa-clock-rotate-left"></i>
                 <span>History</span>
             </a>
 
             <a class="nav-link " href="/manager/working_times">
-                <i class="bi bi-grid"></i>
+                <i class="fa-solid fa-credit-card"></i>
                 <span>Payment</span>
             </a>
 
             <a class="nav-link " href="/manager/level">
-                <i class="bi bi-grid"></i>
+                <i class="fa-solid fa-turn-up"></i>
                 <span>Level</span>
             </a>
 
             <a class="nav-link " href="/manager/position">
-                <i class="bi bi-grid"></i>
+                <i class="fa-solid fa-briefcase"></i>
                 <span>Position</span>
             </a>
         </li><!-- End Dashboard Nav -->
@@ -200,7 +202,7 @@
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="">
-                <i class="bi bi-person"></i>
+                <i class="fa-solid fa-user"></i>
                 <span>Profile</span>
             </a>
         </li><!-- End Profile Page Nav -->

@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'manager@gmail.com',
             'phone' => '0328942388' ,
             'address' => 'A17' ,
-            'avatar_url' => 'https://scontent.fhan14-1.fna.fbcdn.net/v/t39.30808-1/431863338_1664634684341913_3004964793678183903_n.jpg?stp=dst-jpg_p200x200&_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=cs3fy4wGquoAX_2_qsb&_nc_ht=scontent.fhan14-1.fna&oh=00_AfBCNqugYZYe0KkkAf9SliZqyy2Asp74WKxI5ObCTOOIBw&oe=66048EEE' ,
+            'avatar_url' => 'http://127.0.0.1:8000/storage/images/1717772143_bbyboo.jpg' ,
             'password' => Hash::make('manager'),
             'role' => 'manager'
         ]) ;
@@ -62,20 +62,126 @@ class DatabaseSeeder extends Seeder
             'email' => 'superadmin@gmail.com',
             'phone' => '0328942388' ,
             'address' => 'A17' ,
-            'avatar_url' => 'https://scontent.fhan14-1.fna.fbcdn.net/v/t39.30808-1/431863338_1664634684341913_3004964793678183903_n.jpg?stp=dst-jpg_p200x200&_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=cs3fy4wGquoAX_2_qsb&_nc_ht=scontent.fhan14-1.fna&oh=00_AfBCNqugYZYe0KkkAf9SliZqyy2Asp74WKxI5ObCTOOIBw&oe=66048EEE' ,
+            'avatar_url' => 'http://127.0.0.1:8000/storage/images/1717772143_bbyboo.jpg' ,
             'password' => Hash::make('superadmin'),
             'role' => 'super_admin'
         ]) ;
 
+
+//        nhan vien seeder
         DB::table('users')->insert([
             'name' => 'Employee 1' ,
             'email' => 'employee@gmail.com',
             'phone' => '0328942388' ,
             'address' => 'A17' ,
-            'avatar_url' => 'https://scontent.fhan14-1.fna.fbcdn.net/v/t39.30808-1/431863338_1664634684341913_3004964793678183903_n.jpg?stp=dst-jpg_p200x200&_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=cs3fy4wGquoAX_2_qsb&_nc_ht=scontent.fhan14-1.fna&oh=00_AfBCNqugYZYe0KkkAf9SliZqyy2Asp74WKxI5ObCTOOIBw&oe=66048EEE' ,
+            'avatar_url' => 'http://127.0.0.1:8000/storage/images/1717772143_bbyboo.jpg' ,
             'password' => Hash::make('employee'),
             'role' => 'employees',
-
         ]) ;
+        //
+        DB::table('users')->insert([
+            'name' => 'nhan vien 1' ,
+            'email' => 'emp1@gmail.com',
+            'phone' => '0328942388' ,
+            'address' => 'A17' ,
+            'avatar_url' => 'http://127.0.0.1:8000/storage/images/1717772143_bbyboo.jpg' ,
+            'password' => Hash::make('employee'),
+            'role' => 'employees',
+        ]) ;
+        //
+        DB::table('users')->insert([
+            'name' => 'nhan vien 2' ,
+            'email' => 'emp2@gmail.com',
+            'phone' => '0328942388' ,
+            'address' => 'A17' ,
+            'avatar_url' => 'http://127.0.0.1:8000/storage/images/1717772143_bbyboo.jpg' ,
+            'password' => Hash::make('employee'),
+            'gender' => 'Male',
+            'position' => '2',
+            'level' => '2',
+            'role' => 'employees',]) ;
+        DB::table('users')->insert([
+            'name' => 'nhan vien 3' ,
+            'email' => 'emp3@gmail.com',
+            'phone' => '0328942388' ,
+            'address' => 'A17' ,
+            'avatar_url' => 'http://127.0.0.1:8000/storage/images/1717772143_bbyboo.jpg' ,
+            'password' => Hash::make('employee'),
+            'gender' => 'Male',
+            'position' => '2',
+            'level' => '2',
+            'role' => 'employees',]) ;
+        DB::table('users')->insert([
+            'name' => 'nhan vien 4' ,
+            'email' => 'emp4@gmail.com',
+            'phone' => '0328942388' ,
+            'address' => 'A17' ,
+            'avatar_url' => 'http://127.0.0.1:8000/storage/images/1717772143_bbyboo.jpg' ,
+            'password' => Hash::make('employee'),
+            'gender' => 'Male',
+            'position' => '2',
+            'level' => '2',
+
+            'role' => 'employees',]) ;
+        DB::table('users')->insert([
+            'name' => 'nhan vien 5' ,
+            'email' => 'emp5@gmail.com',
+            'phone' => '0328942388' ,
+            'address' => 'A17' ,
+            'avatar_url' => 'http://127.0.0.1:8000/storage/images/1717772143_bbyboo.jpg' ,
+            'password' => Hash::make('employee'),
+            'gender' => 'Male',
+            'position' => '2',
+            'level' => '2',
+
+            'role' => 'employees',]) ;
+        DB::table('users')->insert([
+            'name' => 'nhan vien 6' ,
+            'email' => 'emp6@gmail.com',
+            'phone' => '0328942388' ,
+            'address' => 'A17' ,
+            'avatar_url' => 'http://127.0.0.1:8000/storage/images/1717772143_bbyboo.jpg' ,
+            'password' => Hash::make('employee'),
+            'gender' => 'Male',
+            'position' => '2',
+            'level' => '2',
+            'role' => 'employees',]) ;
+        DB::table('users')->insert([
+            'name' => 'nhan vien 7' ,
+            'email' => 'emp7@gmail.com',
+            'phone' => '0328942388' ,
+            'address' => 'A17' ,
+            'avatar_url' => 'http://127.0.0.1:8000/storage/images/1717772143_bbyboo.jpg' ,
+            'password' => Hash::make('employee'),
+            'gender' => 'Male',
+            'position' => '2',
+            'level' => '2',
+
+            'role' => 'employees',]) ;
+        DB::table('users')->insert([
+            'name' => 'nhan vien 8' ,
+            'email' => 'emp8@gmail.com',
+            'phone' => '0328942388' ,
+            'address' => 'A17' ,
+            'avatar_url' => 'http://127.0.0.1:8000/storage/images/1717772143_bbyboo.jpg' ,
+            'password' => Hash::make('employee'),
+            'gender' => 'Male',
+            'position' => '2',
+            'level' => '2',
+
+            'role' => 'employees',]) ;
+        DB::table('users')->insert([
+            'name' => 'nhan vien 9' ,
+            'email' => 'emp9@gmail.com',
+            'phone' => '0328942388' ,
+            'address' => 'A17' ,
+            'avatar_url' => 'http://127.0.0.1:8000/storage/images/1717772143_bbyboo.jpg' ,
+            'password' => Hash::make('employee'),
+            'gender' => 'Male',
+            'position' => '2',
+            'level' => '2',
+
+            'role' => 'employees',]) ;
+
     }
 }

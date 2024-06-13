@@ -7,7 +7,8 @@
     </div>
     <h2>Danh sách nhân viên</h2>
     <br>
-    <table class="table align-middle mb-0 bg-white" id="users">
+
+    <table class="table align-middle mb-0 bg-white table-bordered" id="users">
 
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCreateEmployees">Thêm mới</button>
 
@@ -67,23 +68,20 @@
                                 Họ và tên<input class="form-control" value="{{$employees->name}}" name="name" required>
                                 Số điện thoại<input class="form-control mt-2" value="{{$employees->phone}}" name="phone" required>
                                 Địa chỉ<input class="form-control mt-2" value="{{$employees->address}}" name="address" required>
-                                Ảnh <input class="form-control mt-2" type="file" name="avatar_url"  required accept="image/*">
+                                Ảnh <input value="{{$employees->avatar_url}}" class="form-control mt-2" type="file" name="avatar_url"  required accept="image/*">
                                 Giới tính
-                                <select class="form-select mt-2" aria-label="Default select example" name="gender">
-                                    <option  value={{$employees->gender}} selected disabled>{{$employees->gender}}</option>
+                                <select data-value="{{$employees->gender}}" class="form-select mt-2" aria-label="Default select example" name="gender" data-mce-placeholder="{{$employees->gender}}">
                                     <option value="Nam">Nam</option>
                                     <option value="Nữ">Nữ</option>
                                 </select>
                                 Vị trí
-                                <select class="form-select mt-2" aria-label="Default select example" name="position">
-                                    <option value={{$employees->position}} selected disabled>{{$employees->position_name}}</option>
+                                <select data-value="{{$employees->position}}" class="form-select mt-2" aria-label="Default select example" name="position" data-mce-placeholder="{{$employees->position}}">
                                     @foreach($position as $pos)
                                         <option value="{{ $pos->id }}">{{ $pos->position_name }}</option>
                                     @endforeach
                                 </select>
                                 Cấp bậc
-                                <select class="form-select mt-2" aria-label="Default select example" name="level">
-                                    <option value="{{$employees->level}}" selected disabled>{{$employees->level_name}}</option>
+                                <select data-value="{{$employees->level_name}}" class="form-select mt-2" aria-label="Default select example" name="level" data-mce-placeholder="{{$employees->level_name}}">
                                     @foreach($level as $lev)
                                         <option value="{{ $lev->id }}">{{ $lev->level_name }}</option>
                                     @endforeach
@@ -108,10 +106,9 @@
             $('#users').DataTable();
         } );
     </script>
-{{----}}
-            <!-- Modal -->
-            {{--add--}}
-        <div class="modal fade" id="modalCreateEmployees" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+
+{{--add--}}
+    <div class="modal fade" id="modalCreateEmployees" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                                              aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <form method="POST" action="{{route('process-add-employees')}}" enctype="multipart/form-data">
@@ -159,8 +156,8 @@
                     </form>
                 </div>
             </div>
-
-        <script>
+{{--delete--}}
+    <script>
             const deleteButtons = document.querySelectorAll('.deleteButton');
 
             deleteButtons.forEach(function(deleteButton) {
@@ -177,37 +174,41 @@
                 });
             });
         </script>
-
-        <script>
+{{--add--}}
+    <script>
             const addButton = document.getElementById('addButton');
 
             addButton.addEventListener('click', function() {
+                addEmployeeData();
+            });
+            function addEmployeeData() {
                 // Hiển thị cảnh báo
                 const result = confirm('Bạn có chắc chắn muốn thêm dữ liệu nhân viên mới?');
                 if (result === true) {
                     alert('Dữ liệu mới đã được thêm thành công!');
                 } else {
                     alert('Thêm dữ liệu mới đã bị hủy!');
-                    addButton.disabled = true;
+                    addButton.removeEventListener('click', addEmployeeData);
                 }
-            });
+            }
         </script>
-
-        <script>
+{{--edit--}}
+    <script>
             const editButton = document.getElementById('editButton');
-
             editButton.addEventListener('click', function() {
-                // Hiển thị cảnh báo
-                const result = confirm('Bạn có chắc chắn muốn thay đổi dữ liệu nhân viên ?');
-                if (result === true) {
-                    alert('Dữ liệu mới đã được thêm thành công!');
-                } else {
-                    alert('Thêm dữ liệu mới đã bị hủy!');
-                    editButton.disabled = true;
-                }
+                editEmployeeData();
             });
+            function editEmployeeData() {
+                // Hiển thị cảnh báo
+                const result = confirm('Bạn có chắc chắn muốn thêm dữ liệu nhân viên mới?');
+                if (result === true) {
+                    alert('Dữ liệu mới đã được sửa thành công!');
+                } else {
+                    alert('Sửa dữ liệu mới đã bị hủy!');
+                    editButton.removeEventListener('click', editEmployeeData);
+                }
+            }
         </script>
-
 @endsection
 
 
