@@ -51,7 +51,7 @@
                         <h1>{{$data->total}}</h1>
                     </td>
 
-                    <td>
+                    <td style="text-align: center">
                         <a href="/manager/analytics/delete/{{$data->working_times_id}}" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>

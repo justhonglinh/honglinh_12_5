@@ -95,6 +95,60 @@
                         </form>
                     </div>
                 </div>
+
+            {{--delete--}}
+            <script>
+                const deleteButtons = document.querySelectorAll('.deleteButton');
+
+                deleteButtons.forEach(function(deleteButton) {
+                    deleteButton.addEventListener('click', function(event) {
+                        event.preventDefault();
+
+                        const result = confirm('Are you sure you want to delete this employee?');
+
+                        if (result === true) {
+                            window.location.href = deleteButton.getAttribute('href');
+                        } else {
+                            alert('Delete operation canceled!');
+                        }
+                    });
+                });
+            </script>
+            {{--add--}}
+            <script>
+                const addButton = document.getElementById('addButton');
+
+                addButton.addEventListener('click', function() {
+                    addEmployeeData();
+                });
+                function addEmployeeData() {
+                    // Hiển thị cảnh báo
+                    const result = confirm('Bạn có chắc chắn muốn thêm dữ liệu nhân viên mới?');
+                    if (result === true) {
+                        alert('Dữ liệu mới đã được thêm thành công!');
+                    } else {
+                        alert('Thêm dữ liệu mới đã bị hủy!');
+                        addButton.removeEventListener('click', addEmployeeData);
+                    }
+                }
+            </script>
+            {{--edit--}}
+            <script>
+                const editButton = document.getElementById('editButton');
+                editButton.addEventListener('click', function() {
+                    editEmployeeData();
+                });
+                function editEmployeeData() {
+                    // Hiển thị cảnh báo
+                    const result = confirm('Bạn có chắc chắn muốn thêm dữ liệu nhân viên mới?');
+                    if (result === true) {
+                        alert('Dữ liệu mới đã được sửa thành công!');
+                    } else {
+                        alert('Sửa dữ liệu mới đã bị hủy!');
+                        editButton.removeEventListener('click', editEmployeeData);
+                    }
+                }
+            </script>
             @endforeach
         </tbody>
 
@@ -156,59 +210,6 @@
                     </form>
                 </div>
             </div>
-{{--delete--}}
-    <script>
-            const deleteButtons = document.querySelectorAll('.deleteButton');
-
-            deleteButtons.forEach(function(deleteButton) {
-                deleteButton.addEventListener('click', function(event) {
-                    event.preventDefault();
-
-                    const result = confirm('Are you sure you want to delete this employee?');
-
-                    if (result === true) {
-                        window.location.href = deleteButton.getAttribute('href');
-                    } else {
-                        alert('Delete operation canceled!');
-                    }
-                });
-            });
-        </script>
-{{--add--}}
-    <script>
-            const addButton = document.getElementById('addButton');
-
-            addButton.addEventListener('click', function() {
-                addEmployeeData();
-            });
-            function addEmployeeData() {
-                // Hiển thị cảnh báo
-                const result = confirm('Bạn có chắc chắn muốn thêm dữ liệu nhân viên mới?');
-                if (result === true) {
-                    alert('Dữ liệu mới đã được thêm thành công!');
-                } else {
-                    alert('Thêm dữ liệu mới đã bị hủy!');
-                    addButton.removeEventListener('click', addEmployeeData);
-                }
-            }
-        </script>
-{{--edit--}}
-    <script>
-            const editButton = document.getElementById('editButton');
-            editButton.addEventListener('click', function() {
-                editEmployeeData();
-            });
-            function editEmployeeData() {
-                // Hiển thị cảnh báo
-                const result = confirm('Bạn có chắc chắn muốn thêm dữ liệu nhân viên mới?');
-                if (result === true) {
-                    alert('Dữ liệu mới đã được sửa thành công!');
-                } else {
-                    alert('Sửa dữ liệu mới đã bị hủy!');
-                    editButton.removeEventListener('click', editEmployeeData);
-                }
-            }
-        </script>
 @endsection
 
 

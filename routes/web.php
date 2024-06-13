@@ -61,6 +61,11 @@ Route::post('/manager/working_times/check/{id}',[\App\Http\Controllers\Manager\C
 Route::get('/manager/history',[\App\Http\Controllers\Manager\HistoryController::class,'viewHome']) ;
 Route::get('/manager/history/delete/{id}',[\App\Http\Controllers\Manager\HistoryController::class,'check_delete']) ;
 
-//employees page
+
+#=========================================================!!!!!=====================================================================
+//employees  home page
 Route::get('/employees/home',[\App\Http\Controllers\Employees\EmployeesController::class,'viewHome']
 )->middleware('auth')->name('employees.home');
+
+#emp history check working page
+Route::get('/employees/history',[\App\Http\Controllers\Employees\HistoryController::class,'showHistory']);

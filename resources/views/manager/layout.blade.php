@@ -7,6 +7,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
+
     <!-- Favicons -->
     <link href="{{asset('assets/img/favicon.png')}}" rel="icon">
     <link href="{{asset('assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
@@ -141,19 +142,16 @@
             </li><!-- End Search Icon-->
 
             <li class="nav-item dropdown pe-3">
-
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="{{\Illuminate\Support\Facades\Auth::user()->avatar_url}}" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">
-                        {{\Illuminate\Support\Facades\Auth::user()->name}}
-                    </span>
-
-                    <form method="post" action="{{route('logout')}}">
+                    <img src="{{ \Illuminate\Support\Facades\Auth::user()->avatar_url }}" alt="Profile" class="rounded-circle">
+                    <span class="d-none d-md-block ps-2">{{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
+                </a><!-- End Profile Image Icon -->
+                <div class="dropdown-menu">
+                    <form method="post" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="btn btn-outline-dark me-2">Logout</button>
+                        <button type="submit" class="dropdown-item">Logout</button>
                     </form>
-                </a><!-- End Profile Iamge Icon -->
-
+                </div>
             </li><!-- End Profile Nav -->
 
         </ul>

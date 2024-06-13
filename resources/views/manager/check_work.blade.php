@@ -43,21 +43,39 @@
                     <td>{{$users->address}}</td>
 
                     <td style="text-align: center">
-                        <form method="POST" action="/manager/working_times/check/{{$users->id}}">
+                        <form id="updateForm" method="POST" action="/manager/working_times/check/{{$users->id}}">
                             @csrf
-
-                            <label for="startDateTime">Ngày giờ bắt đầu:</label>
+                            <div>
+                                <label for="startDateTime">Ngày giờ bắt đầu:</label>
+                                <input type="time" id="startDateTime" name="start_time">
+                            </div>
                             <br>
-                            <input type="datetime-local" id="startDateTime" name="start_time">
-                            <br><br>
 
-                            <label for="endDateTime">Ngày giờ kết thúc:</label>
+                            <div>
+                                <label for="endDateTime">Ngày giờ kết thúc:</label>
+                                <input type="time" id="endDateTime" name="end_time">
+                            </div>
+
                             <br>
-                            <input type="datetime-local" id="endDateTime" name="end_time">
-                            <br><br>
 
-                            <button type="submit">Tính</button>
+                            <button type="submit" id="checkButton" class="btn btn-primary">Update</button>
                         </form>
+
+                        <script>
+                            const updateForm = document.getElementById('updateForm');
+
+                            updateForm.addEventListener('submit', function(event) {
+                                event.preventDefault();
+
+                                const result = confirm('Are you sure you want to update this working time?');
+
+                                if (result === true) {
+                                    updateForm.submit();
+                                } else {
+                                    alert('Update working time canceled!');
+                                }
+                            });
+                        </script>
                         <script>
                             document.addEventListener('DOMContentLoaded', function() {
                                 var startDateTimeField = document.getElementById('startDateTime{{ $loop->iteration }}');
@@ -67,7 +85,9 @@
                                 endDateTimeField.value = currentDateTime;
                             });
                         </script>
-                    </tr>
+                    </td>
+
+                </tr>
 
             @endforeach
             </tbody>
@@ -77,4 +97,5 @@
                 $('#work').DataTable();
             } );
         </script>
+
 @endsection
