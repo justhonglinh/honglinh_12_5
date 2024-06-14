@@ -18,7 +18,7 @@ class ManagerController extends Controller
             ->join('position', 'users.position', '=', 'position.id')
             ->join('level', 'users.level', '=', 'level.id')
             ->select('users.*', 'position.position_name', 'level.level_name')
-            ->paginate(10);
+            ->get();
 
         return view('manager.home', compact('users', 'level', 'position'));
     }

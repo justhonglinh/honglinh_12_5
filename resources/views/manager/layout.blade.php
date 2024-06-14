@@ -1,13 +1,8 @@
 <!doctype html>
 <html lang="en"><head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
 
-    <title>Dashboard - NiceAdmin Bootstrap Template</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-
-
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
     <!-- Favicons -->
     <link href="{{asset('assets/img/favicon.png')}}" rel="icon">
     <link href="{{asset('assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
@@ -36,15 +31,11 @@
 
 {{--    font awesome--}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <style id="apexcharts-css">@keyframes opaque {
-                                   0% {
-                                       opacity: 0
-                                   }
-
-                                   to {
-                                       opacity: 1
-                                   }
-                               }
+    <style id="apexcharts-css">
+        @keyframes opaque {
+            0% {opacity: 0}
+            to {opacity: 1}
+        }
 
         @keyframes resizeanim {
             0%,to {
@@ -225,6 +216,7 @@
         <div class="row">
 
             <!-- Left side columns -->
+          {{--
             <div class="col-lg-8">
                 <div class="row">
 
@@ -259,7 +251,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div><!-- End Sales Card -->
 
@@ -299,7 +290,7 @@
                     </div><!-- End Revenue Card -->
 
                     <!-- Customers Card -->
-                    <div class="col-xxl-4 col-xl-12">
+                    <div class="col-xxl-4 col-xl-8">
 
                         <div class="card info-card customers-card">
 
@@ -337,7 +328,7 @@
 
                 </div>
             </div><!-- End Left side columns -->
-
+            --}}
             <!-- Right side columns -->
             <div class="card-body">
                 @yield('content')
