@@ -69,3 +69,6 @@ Route::get('/employees/home',[\App\Http\Controllers\Employees\EmployeesControlle
 
 #emp history check working page
 Route::get('/employees/history',[\App\Http\Controllers\Employees\HistoryController::class,'showHistory']);
+Route::get('/employees/payment',[\App\Http\Controllers\Employees\PaymentController::class,'showPayment']);
+Route::get('/employees/history',[\App\Http\Controllers\Employees\HistoryController::class,'showHistory']);
+Route::get('/employees/history',[\App\Http\Controllers\Employees\HistoryController::class,'showHistory']);

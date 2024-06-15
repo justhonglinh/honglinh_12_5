@@ -50,13 +50,28 @@
                 <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalUpdateEmployees_{{ $employees->id }}">
                     Edit
                 </button>
-                <a href="/manager/employees/delete/{{ $employees->id }}" id="deleteButton" class="btn btn-danger">Delete</a>
+                {{--Delete--}}
+                <a href="/manager/employees/delete/{{ $employees->id }}" id="deleteButton" class="btn btn-danger" onclick="confirmDelete(event)">Delete</a>
+                <script>
+                    function confirmDelete(event) {
+                        event.preventDefault();
+
+                        const result = confirm('Are you sure you want to delete this employee?');
+
+                        if (result === true) {
+                            window.location.href = event.target.href;
+                        } else {
+                            alert('Delete canceled!');
+                        }
+                    }
+                </script>
             </td>
+
         </tr>
 
 
         {{--Update--}}
-        <div class="modal fade" id="modalUpdateEmployees_{{$employees->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="modalUpdateEmployees_{{ $employees->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <form method="POST" action="{{ route('process-edit-employees', ['id' => $employees->id]) }}" enctype="multipart/form-data">
                     @csrf
@@ -66,23 +81,23 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <input class="form-control" value="{{$employees->name}}" name="name" required>
-                            <input class="form-control mt-2" value="{{$employees->phone}}" name="phone" required>
-                            <input class="form-control mt-2" value="{{$employees->address}}" name="address" required>
-                            <input value="{{$employees->avatar_url}}" class="form-control mt-2" type="file" name="avatar_url"  required accept="image/*">
+                            <input class="form-control" value="{{ $employees->name }}" name="name" required>
+                            <input class="form-control mt-2" value="{{ $employees->phone }}" name="phone" required>
+                            <input class="form-control mt-2" value="{{ $employees->address }}" name="address" required>
+                            <input class="form-control mt-2" type="file" name="avatar_url" required accept="image/*">
 
-                            <select data-value="{{$employees->gender}}" class="form-select mt-2" aria-label="Default select example" name="gender" data-mce-placeholder="{{$employees->gender}}">
+                            <select data-value="{{ $employees->gender }}" class="form-select mt-2" aria-label="Default select example" name="gender">
                                 <option value="Nam">Nam</option>
-                                <option value="Nữ">Nữ</option>
+                                <option value="Nữ">Nữ</option>
                             </select>
 
-                            <select data-value="{{$employees->position}}" class="form-select mt-2" aria-label="Default select example" name="position" data-mce-placeholder="{{$employees->position}}">
+                            <select data-value="{{ $employees->position }}" class="form-select mt-2" aria-label="Default select example" name="position">
                                 @foreach($position as $pos)
                                     <option value="{{ $pos->id }}">{{ $pos->position_name }}</option>
                                 @endforeach
                             </select>
 
-                            <select data-value="{{$employees->level_name}}" class="form-select mt-2" aria-label="Default select example" name="level" data-mce-placeholder="{{$employees->level_name}}">
+                            <select data-value="{{ $employees->level_name }}" class="form-select mt-2" aria-label="Default select example" name="level">
                                 @foreach($level as $lev)
                                     <option value="{{ $lev->id }}">{{ $lev->level_name }}</option>
                                 @endforeach
@@ -90,31 +105,32 @@
                         </div>
 
                         <div class="modal-footer">
-                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                <button type="submit" id="editButton_{{$employees->id}}" class="btn btn-primary">Thay Đổi</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="submit" id="editButton_{{ $employees->id }}" class="btn btn-primary" onclick="confirmAndUpdate_{{ $employees->id }}(event)">Thay Đổi</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-        <script>
-            const editButton = document.getElementById('editButton_{{$employees->id}}');
-            editButton.addEventListener('click', function(event) {
-                event.preventDefault();
-                editEmployeeData();
-            });
 
-            function editEmployeeData() {
-                // Hiển thị cảnh báo
-                const result = confirm('Bạn có chắc chắn muốn sửa dữ liệu nhân viên mới?');
+        <script>
+            function confirmAndUpdate_{{ $employees->id }}(event) {
+                event.preventDefault();
+
+                const result = confirm('Are you sure you want to update this employees info ?');
+
                 if (result === true) {
-                    // Gửi biểu mẫu
-                    editButton.closest('form').submit();
+                    event.target.form.submit();
                 } else {
-                    alert('Sửa dữ liệu mới đã bị hủy!');
+                    alert('Update information canceled!');
                 }
             }
         </script>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     @endforeach
     </tbody>
 </table>
@@ -124,7 +140,7 @@
         $('#users').DataTable();
     } );
 </script>
-@endsection
+
 
 {{--add--}}
 <div class="modal fade" id="modalCreateEmployees" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -193,13 +209,15 @@
 
 {{--delete--}}
 <script>
-    const deleteButton = document.getElementById('deleteButton');
-    deleteButton.addEventListener('click', function(event) {
-        event.preventDefault();
-        deleteEmployeeData();
+    const deleteButtons = document.querySelectorAll('.deleteButton');
+    deleteButtons.forEach(function(deleteButton) {
+        deleteButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            deleteEmployeeData(deleteButton);
+        });
     });
 
-    function deleteEmployeeData() {
+    function deleteEmployeeData(deleteButton) {
         // Hiển thị cảnh báo
         const result = confirm('Bạn có chắc chắn muốn xóa nhân viên này?');
         if (result === true) {
@@ -211,3 +229,4 @@
     }
 </script>
 
+@endsection

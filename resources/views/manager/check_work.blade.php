@@ -58,39 +58,38 @@
 
                             <br>
 
-                            <button type="submit" id="checkButton" class="btn btn-primary">Update</button>
-                        </form>
+                            <button type="submit" class="btn btn-primary" onclick="confirmAndUpdate_{{$users->id}}(event)">Update</button>
 
-                        <script>
-                            const updateForm = document.getElementById('updateForm');
+                            <script>
+                                function confirmAndUpdate_{{$users->id}}(event) {
+                                    event.preventDefault();
 
-                            updateForm.addEventListener('submit', function(event) {
-                                event.preventDefault();
+                                    const result = confirm('Are you sure you want to update this working time?');
 
-                                const result = confirm('Are you sure you want to update this working time?');
-
-                                if (result === true) {
-                                    updateForm.submit();
-                                } else {
-                                    alert('Update working time canceled!');
+                                    if (result === true) {
+                                        event.target.form.submit();
+                                    } else {
+                                        alert('Update working time canceled!');
+                                    }
                                 }
-                            });
-                        </script>
-                        <script>
-                            document.addEventListener('DOMContentLoaded', function() {
-                                var startDateTimeField = document.getElementById('startDateTime{{ $loop->iteration }}');
-                                var endDateTimeField = document.getElementById('endDateTime{{ $loop->iteration }}');
-                                var currentDateTime = new Date().toISOString().slice(0, 16);
-                                startDateTimeField.value = currentDateTime;
-                                endDateTimeField.value = currentDateTime;
-                            });
-                        </script>
+                            </script>
+
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    var startDateTimeField = document.getElementById('startDateTime{{$loop->iteration}}');
+                                    var endDateTimeField = document.getElementById('endDateTime{{$loop->iteration}}');
+                                    var currentDateTime = new Date().toISOString().slice(0, 16);
+                                    startDateTimeField.value = currentDateTime;
+                                    endDateTimeField.value = currentDateTime;
+                                });
+                            </script>
+                        </form>
                     </td>
-
                 </tr>
-
             @endforeach
+
             </tbody>
+
         </table>
         <script>
             $(document).ready( function () {

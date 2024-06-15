@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="en"><head>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
-
-    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
     <!-- Favicons -->
     <link href="{{asset('assets/img/favicon.png')}}" rel="icon">
     <link href="{{asset('assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">

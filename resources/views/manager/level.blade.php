@@ -43,7 +43,22 @@
                             Edit
                         </button>
 
-                        <a href="/level/delete/{{$level->id}}" class="btn btn-danger">Delete</a>
+                        <a href="/level/delete/{{$level->id}}" class="btn btn-danger" onclick="confirmDelete(event)">Delete</a>
+                        {{--Script Delete--}}
+                        <script>
+                            function confirmDelete(event) {
+                                event.preventDefault();
+
+                                const result = confirm('Are you sure you want to delete this level?');
+
+                                if (result === true) {
+                                    window.location.href = event.target.href;
+                                } else {
+                                    alert('Delete canceled!');
+                                }
+                            }
+                        </script>
+
                     </td>
                 </tr>
                 {{--    <!-- Modal -->--}}
@@ -65,7 +80,22 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                    <button type="submit" class="btn btn-primary">Change</button>
+                                    <button type="submit" id="editButton_{{ $level->id }}" class="btn btn-primary" onclick="confirmAndUpdate_{{ $level->id }}(event)">Thay Đổi</button>
+
+                                    {{--Script edit--}}
+                                    <script>
+                                        function confirmAndUpdate_{{ $level->id }}(event) {
+                                            event.preventDefault();
+
+                                            const result = confirm('Are you sure you want to update this level ?');
+
+                                            if (result === true) {
+                                                event.target.form.submit();
+                                            } else {
+                                                alert('Update level canceled!');
+                                            }
+                                        }
+                                    </script>
                                 </div>
                             </div>
                         </form>
@@ -90,8 +120,25 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                <button type="submit" class="btn btn-primary">Tạo mới</button>
+                                <button type="submit" id="addButton" class="btn btn-primary" onclick="addLevelData(event)">Tạo mới</button>
                             </div>
+                            {{--Script add--}}
+                            {{--Alert--}}
+                            <script>
+                                function addLevelData(event) {
+                                    event.preventDefault();
+
+                                    // Hiển thị cảnh báo
+                                    const result = confirm('Bạn có chắc chắn muốn thêm dữ liệu level mới?');
+                                    if (result === true) {
+                                        // Gửi biểu mẫu
+                                        event.target.form.submit();
+                                    } else {
+                                        alert('Thêm dữ liệu mới đã bị hủy!');
+                                    }
+                                }
+                            </script>
+
                         </div>
                     </form>
                 </div>

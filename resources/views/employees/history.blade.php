@@ -30,28 +30,32 @@
                     </div>
 
                     <div class="col-lg-8">
-                            <table class="table">
+                            <table class="table" id="history">
                                 <thead>
                                 <tr>
                                     <th scope="col">Day</th>
                                     <th scope="col">Start Time</th>
                                     <th scope="col">End Time</th>
-                                    <th scope="col">Total</th>
+                                    <th scope="col" style="text-align: center">Total</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($history as $day)
                                         <tr>
-                                            <th scope="row"></th>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            {{ optional($datetime)->format('d/m/Y') }}
+                                            <td>{{ $day->start_time ? \Carbon\Carbon::parse($day->created_at)->format('d/m/Y') : '' }}</td>
+                                            <td>{{$day->start_time}}</td>
+                                            <td>{{$day->end_time}}</td>
+                                            <td style="text-align:center">{{$day->total}}</td>
                                         </tr>
                                     @endforeach
-
                                 </tbody>
                             </table>
+                        <script>
+                            $(document).ready( function () {
+                                $('#history').DataTable();
+                            } );
+                        </script>
+
                     </div>
                 </div>
             </div>

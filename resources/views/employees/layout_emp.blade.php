@@ -7,6 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset('bootstrap-5.3.3/css/bootstrap.min.css')}}">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap."></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
 </head>
 <body>
 
@@ -15,7 +20,7 @@
         <ul class="nav me-auto">
             <li class="nav-item"><a href="/employees/home" class="nav-link link-body-emphasis px-2 active" aria-current="page">Home</a></li>
             <li class="nav-item"><a href="/employees/history" class="nav-link link-body-emphasis px-2">Lịch sử</a></li>
-            <li class="nav-item"><a href="/emplyees/payment" class="nav-link link-body-emphasis px-2">Bảng Lương</a></li>
+            <li class="nav-item"><a href="/employees/payment" class="nav-link link-body-emphasis px-2">Bảng Lương</a></li>
             <li class="nav-item"><a href="/employees/bank" class="nav-link link-body-emphasis px-2">Ngân Hàng</a></li>
         </ul>
 
