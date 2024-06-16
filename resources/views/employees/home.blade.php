@@ -10,19 +10,15 @@
                             <div class="card-body text-center">
                                 <img src="{{\Illuminate\Support\Facades\Auth::user()->avatar_url}}" alt="avatar"
                                      class="rounded-circle img-fluid" style="width: 150px;">
-                                <h5 class="my-3">                {{\Illuminate\Support\Facades\Auth::user()->name}}</h5>
-                                @foreach($position as $pos)
-                                    <p class="text-muted mb-1">
-                                        Position: {{$pos->position_name}}
+                                    <h5 class="my-3" style="text-transform:uppercase">
+                                        {{\Illuminate\Support\Facades\Auth::user()->name}}
+                                    </h5>
+                                    <p class="text-muted mb-1" style="text-transform:uppercase">
+                                        Position: {{$position->position_name}}
                                     </p>
-                                @endforeach
-
-
-                                @foreach($level as $lev)
-                                    <p class="text-muted mb-4">
-                                        Level :{{ $lev->level_name}}
+                                    <p class="text-muted mb-4" style="text-transform:uppercase">
+                                        Level :{{ $level->level_name}}
                                     </p>
-                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -35,7 +31,7 @@
                                     <p class="mb-0">Full Name</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">{{\Illuminate\Support\Facades\Auth::user()->name}}</p>
+                                    <p class="text-muted mb-0" style="text-transform:uppercase">{{\Illuminate\Support\Facades\Auth::user()->name}}</p>
                                 </div>
                             </div>
                             <hr>
@@ -44,7 +40,7 @@
                                     <p class="mb-0">Email</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">{{\Illuminate\Support\Facades\Auth::user()->email}}</p>
+                                    <p class="text-muted mb-0" >{{\Illuminate\Support\Facades\Auth::user()->email}}</p>
                                 </div>
                             </div>
                             <hr>
@@ -53,7 +49,7 @@
                                     <p class="mb-0">Phone</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">{{\Illuminate\Support\Facades\Auth::user()->phone}}</p>
+                                    <p class="text-muted mb-0" style="text-transform:uppercase">{{\Illuminate\Support\Facades\Auth::user()->phone}}</p>
                                 </div>
                             </div>
                             <hr>
@@ -63,7 +59,7 @@
                                     <p class="mb-0">Address</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">{{\Illuminate\Support\Facades\Auth::user()->address}}</p>
+                                    <p class="text-muted mb-0" style="text-transform:uppercase">{{\Illuminate\Support\Facades\Auth::user()->address}}</p>
                                 </div>
                             </div>
                         </div>

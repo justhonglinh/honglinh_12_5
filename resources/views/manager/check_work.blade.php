@@ -9,6 +9,7 @@
         <table class="table align-middle mb-0 bg-white" id="work">
             <thead class="bg-light">
             <tr >
+                <td>ID</td>
                 <th>Name</th>
                 <th>Position</th>
                 <th>Phone</th>
@@ -19,6 +20,7 @@
             <tbody>
             @foreach($users as $users)
                 <tr>
+                    <td>{{$users->id}}</td>
                     <td>
                         <div class="d-flex align-items-center">
                             <img

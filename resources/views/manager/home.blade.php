@@ -13,6 +13,7 @@
 
     <thead class="bg-light">
         <tr >
+            <td>ID</td>
             <th>Name</th>
             <th>Position</th>
             <th>Phone</th>
@@ -24,6 +25,9 @@
     <tbody>
     @foreach($users as $employees)
         <tr>
+            <td class="d-flex">
+                {{$employees->id}}
+            </td>
             <td>
                 <div class="d-flex align-items-center">
                     <img

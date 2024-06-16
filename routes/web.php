@@ -39,6 +39,12 @@ Route::get('/manager/level',[\App\Http\Controllers\Manager\LevelController::clas
 Route::get('/manager/position',[\App\Http\Controllers\Manager\PositionController::class,'viewPosition']
 )->name('manager.position');
 
+Route::get('/manager/working_times',[\App\Http\Controllers\Manager\CheckWorkController::class,'viewHome']
+)->name('manager/working_times') ;
+
+Route::get('/manager/payment',[\App\Http\Controllers\Manager\PaymentController::class,'viewPayment']
+)->name('manager/payment') ;
+
 //employees
 Route::post('/manager/employees/add',[\App\Http\Controllers\Manager\ManagerController::class,'addEmployees'])->name('process-add-employees') ;
 Route::get('/manager/employees/delete/{id}',[\App\Http\Controllers\Manager\ManagerController::class,'deleteEmployees'])->name('process-delete-employees') ;
@@ -54,10 +60,9 @@ Route::post('/position/add',[\App\Http\Controllers\Manager\PositionController::c
 Route::get('/position/delete/{id}',[\App\Http\Controllers\Manager\PositionController::class,'deletePosition'])->name('process-delete-position') ;
 Route::post('/position/edit/{id}',[\App\Http\Controllers\Manager\PositionController::class,'processEditPosition'])->name('process-edit-position') ;
 
-//chcek work
-Route::get('/manager/working_times',[\App\Http\Controllers\Manager\CheckWorkController::class,'viewHome']) ;
-Route::post('/manager/working_times/check/{id}',[\App\Http\Controllers\Manager\CheckWorkController::class,'check']) ;
 
+//chcek work
+Route::post('/manager/working_times/check/{id}',[\App\Http\Controllers\Manager\CheckWorkController::class,'check']) ;
 Route::get('/manager/history',[\App\Http\Controllers\Manager\HistoryController::class,'viewHome']) ;
 Route::get('/manager/history/delete/{id}',[\App\Http\Controllers\Manager\HistoryController::class,'check_delete']) ;
 
@@ -70,5 +75,10 @@ Route::get('/employees/home',[\App\Http\Controllers\Employees\EmployeesControlle
 #emp history check working page
 Route::get('/employees/history',[\App\Http\Controllers\Employees\HistoryController::class,'showHistory']);
 Route::get('/employees/payment',[\App\Http\Controllers\Employees\PaymentController::class,'showPayment']);
-Route::get('/employees/history',[\App\Http\Controllers\Employees\HistoryController::class,'showHistory']);
-Route::get('/employees/history',[\App\Http\Controllers\Employees\HistoryController::class,'showHistory']);
+Route::get('/employees/bank',[\App\Http\Controllers\Employees\BankController::class,'showBank']);
+
+//bank
+Route::post('/bank/add',[\App\Http\Controllers\Employees\BankController::class,'addBank'])->name('process-add-bank') ;
+Route::post('/bank/edit',[\App\Http\Controllers\Employees\BankController::class,'editBank'])->name('process-edit-bank') ;
+
+

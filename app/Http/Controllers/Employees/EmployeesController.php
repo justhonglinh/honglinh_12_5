@@ -14,8 +14,8 @@ class EmployeesController extends Controller
         $user = Auth::user();
 
         // Truy vấn dữ liệu từ bảng 'level' dựa trên level_id của người dùng
-        $level = DB::table('level')->where('id', '=', $user->level)->get();
-        $position = DB::table('position')->where('id','=',$user->position)->get() ;
+        $level = DB::table('level')->where('id', '=', $user->level)->first();
+        $position = DB::table('position')->where('id','=',$user->position)->first() ;
         return view('employees.home', ['level' => $level,'position'=>$position]);
     }
 }

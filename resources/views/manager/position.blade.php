@@ -14,7 +14,6 @@
                 <th>ID</th>
                 <th>Position</th>
                 <th>Salary</th>
-                <th>Quantity</th>
                 <th style="text-align: center">Actions</th>
             </tr>
             </thead>
@@ -34,7 +33,6 @@
                     <td>
                         <p class="fw-normal mb-1">{{$position->salary}}/1 hours</p>
                     </td>
-                    <td> Quantiy nhe !</td>
 
                     <td style="text-align: center">
                         <button class="btn btn-warning" data-bs-toggle="modal"

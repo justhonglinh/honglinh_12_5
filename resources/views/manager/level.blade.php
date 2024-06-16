@@ -15,7 +15,6 @@
                 <th>ID</th>
                 <th>Level</th>
                 <th>Salary Factor</th>
-                <th>Quantity</th>
                 <th style="text-align: center">Actions</th>
             </tr>
             </thead>
@@ -35,7 +34,6 @@
                     <td>
                         <p class="fw-normal mb-1">{{$level->level_factor}}</p>
                     </td>
-                    <td> Quantiy nhe !</td>
 
                     <td style="text-align: center">
                         <button class="btn btn-warning" data-bs-toggle="modal"

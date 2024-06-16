@@ -14,12 +14,11 @@ class CheckWorkController extends Controller
             $level = DB::table('level')->get() ;
             $position = DB::table('position')->get() ;
 
-            $users = DB::table('users')
-                ->join('position', 'users.position', '=', 'position.id')
-                ->join('level', 'users.level', '=', 'level.id')
-                ->select('users.*', 'position.position_name', 'level.level_name')
-                ->get();
-
+        $users = DB::table('users')
+            ->join('position', 'users.position', '=', 'position.id')
+            ->join('level', 'users.level', '=', 'level.id')
+            ->select('users.*', 'position.position_name', 'level.level_name')
+            ->get();
             return view('manager.check_work', ['users' => $users,'level'=>$level,'position'=>$position]);
 
     }

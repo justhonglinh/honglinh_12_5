@@ -14,6 +14,7 @@
                     <th>Address</th>
                     <th>Start Time</th>
                     <th>End Time</th>
+                    <th>Create Time</th>
                     <th>Total </th>
                     <th style="text-align: center">Actions</th>
                     <th></th>
@@ -47,12 +48,16 @@
                     <td style="align-content: center">{{$data->start_time}}</td>
                     <td style="align-content: center">{{$data->end_time}}</td>
 
+                    <td>
+                        <p>{{$data->created_at}}</p>
+                    </td>
+
                     <td style="text-align: center">
                         <h1>{{$data->total}}</h1>
                     </td>
 
                     <td style="text-align: center">
-                        <a href="/manager/analytics/delete/{{$data->working_times_id}}" class="btn btn-danger">Delete</a>
+                        <a href="/manager/history/delete/{{$data->working_times_id}}" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
             @endforeach

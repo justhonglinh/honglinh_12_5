@@ -39,7 +39,15 @@ class ManagerController extends Controller
         $avatar_file->storeAs('public/images', $newNameFile);
         $avatar_url = asset('storage/images/' . $newNameFile);
 
-        $employees = DB::table('users')->insert([
+        $existingUser = DB::table('users')
+            ->where('email', $email)
+            ->first();
+
+        if ($existingUser) {
+            return redirect('/manager/home')->withErrors(['message' => 'Dữ liệu đã tồn tại.']);
+        }
+
+         DB::table('users')->insert([
             'name' => $name,
             'avatar_url' => $avatar_url,
             'email' => $email,
@@ -53,9 +61,7 @@ class ManagerController extends Controller
 
             'created_at' => now(),
         ]);
-        if ($employees == false) {
-            dd("Thất bại!");
-        }
+
         return redirect('/manager/home');
 
     }
