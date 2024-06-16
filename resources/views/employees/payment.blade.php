@@ -10,14 +10,16 @@
                             <div class="card-body text-center">
                                 <img src="{{\Illuminate\Support\Facades\Auth::user()->avatar_url}}" alt="avatar"
                                      class="rounded-circle img-fluid" style="width: 150px;">
-                                <h5 class="my-3">                {{\Illuminate\Support\Facades\Auth::user()->name}}</h5>
-                                <p class="text-muted mb-1">
+                                <h5 class="my-3" style="text-transform: uppercase">
+                                    {{\Illuminate\Support\Facades\Auth::user()->name}}
+                                </h5>
+                                <p class="text-muted mb-1" style="text-transform:uppercase">
                                     Position: {{ $position->position_name }}
                                 </p>
-                                <p class="text-muted mb-1">
+                                <p class="text-muted mb-1" style="text-transform:uppercase">
                                     Level: {{ $level->level_name }}
                                 </p>
-                                <p class="text-muted mb-1">
+                                <p class="text-muted mb-1" style="text-transform:uppercase">
                                     Salary: {{ $position->salary }}$/1h
                                 </p>
 
@@ -39,11 +41,11 @@
                             <tbody>
                             @foreach ($monthlyTotals as $month => $total)
                                     <tr>
-                                        <td style="text-align: center">{{ $month }}</td>
-                                        <td style="text-align: center">{{ $total }} Hours</td>
-                                        <td style="text-align: center">{{ $position->salary }} $/ 1 Hours</td>
-                                        <td style="text-align: center">{{ $level->level_factor }}</td>
-                                        <td style="text-align: center">{{ $total * $position->salary * $level->level_factor }} $</td>
+                                        <td style="text-align: center;text-transform: uppercase">{{ $month }}</td>
+                                        <td style="text-align: center;text-transform: uppercase ">{{ $total }} Hours</td>
+                                        <td style="text-align: center;text-transform: uppercase">{{ $position->salary }} $/ 1 Hours</td>
+                                        <td style="text-align: center;text-transform: uppercase">{{ $level->level_factor }}</td>
+                                        <td style="text-align: center;text-transform: uppercase">{{ $total * $position->salary * $level->level_factor }} $</td>
                                     </tr>
                             @endforeach
                             </tbody>

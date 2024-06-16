@@ -29,6 +29,7 @@ class LevelController extends Controller
         }
         return redirect('/manager/level');
     }
+
     function deleteLevel($id)
     {
         DB::table('level')->delete($id);
