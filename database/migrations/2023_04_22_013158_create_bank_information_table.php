@@ -17,8 +17,6 @@ return new class extends Migration
             $table->string("bank_name") ;
             $table->integer('bank_number' ) ;
 
-            $table->float('total_working_hours') ;
-            $table->integer('salary') ;
             $table->timestamps();
 
             $table->foreign('employee_id')->references('id')->on('users')->onDelete('cascade');

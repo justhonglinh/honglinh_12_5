@@ -25,9 +25,9 @@ class HistoryController extends Controller
             ->whereYear('created_at', '=', $currentYear)
             ->orderBy('created_at', 'desc') // Sắp xếp theo thời gian tạo giảm dần
             ->paginate($perPage);
-        $level = DB::table('level')->where('id', '=', $user->level)->get();
-        $position = DB::table('position')->where('id','=',$user->position)->get() ;
-        return view('employees.history', ['history' => $history,'level'=>$level,'position'=>$position]);
+        $level = DB::table('level')->where('id', '=', $user->level)->first();
+        $position = DB::table('position')->where('id','=',$user->position)->first() ;
+        return view('employees.check', ['history' => $history,'level'=>$level,'position'=>$position]);
 
     }
 
