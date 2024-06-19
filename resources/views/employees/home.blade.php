@@ -1,6 +1,11 @@
 @extends('employees.layout_emp')
 
 @section('content')
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <main>
             <section style="background-color: #eee;">
                 <div class="container py-5">
@@ -19,49 +24,16 @@
                                     <p class="text-muted mb-4" style="text-transform:uppercase">
                                         Level :{{ $level->level_name}}
                                     </p>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="checkIn()">Check In</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="checkOut()">Check Out</button>
-                                    <script>
-                                        function checkIn() {
-                                            // Lấy thời gian hiện tại
-                                            var currentTime = new Date().toLocaleTimeString();
+                                    @if($day)
+                                        @if($day->updated_at == null)
+                                            <a href="/working-time/check-out/{{\Illuminate\Support\Facades\Auth::user()->id}}" class="btn btn-sm btn-outline-secondary">Check Out</a>
+                                        @else
+                                            <p>ban da hoan thanh cong viec</p>
+                                        @endif
+                                    @else
+                                        <a href="/working-time/check-in/{{\Illuminate\Support\Facades\Auth::user()->id}}" class="btn btn-sm btn-outline-secondary">Check In</a>
+                                    @endif
 
-                                            // Gửi yêu cầu POST để cập nhật start_time trong cơ sở dữ liệu
-                                            $.ajax({
-                                                url: '/update-working-time',
-                                                type: 'POST',
-                                                data: {
-                                                    start_time: currentTime
-                                                },
-                                                success: function(response) {
-                                                    alert('Checked In');
-                                                },
-                                                error: function(xhr, status, error) {
-                                                    alert('Error: ' + error);
-                                                }
-                                            });
-                                        }
-
-                                        function checkOut() {
-                                            // Lấy thời gian hiện tại
-                                            var currentTime = new Date().toLocaleTimeString();
-
-                                            // Gửi yêu cầu POST để cập nhật end_time trong cơ sở dữ liệu
-                                            $.ajax({
-                                                url: '/update-working-time',
-                                                type: 'POST',
-                                                data: {
-                                                    end_time: currentTime
-                                                },
-                                                success: function(response) {
-                                                    alert('Checked Out');
-                                                },
-                                                error: function(xhr, status, error) {
-                                                    alert('Error: ' + error);
-                                                }
-                                            });
-                                        }
-                                    </script>
                                 </div>
                             </div>
                         </div>

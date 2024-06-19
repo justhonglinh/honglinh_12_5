@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
 {
-
-
     public function calculateMonthlyTotals()
     {
         $currentYear = Carbon::now()->year;

@@ -32,7 +32,6 @@ class BankController extends Controller
 
     function addBank(Request $request)
     {
-        $user = Auth::user();
         $name = $request->get('name_bank');
         $number = $request->get('number_bank');
 

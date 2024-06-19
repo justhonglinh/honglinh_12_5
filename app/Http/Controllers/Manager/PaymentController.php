@@ -12,9 +12,9 @@ class PaymentController extends Controller
     {
         $users = DB::table('users')
             ->join('bank_information', 'users.id', '=', 'bank_information.employee_id')
-            ->select('users.*', 'bank_information.bank_name', 'bank_information.bank_number')
+            ->join('position','users.position','=','position.id')
+            ->join('working_times','users.id','=','working_times.employee_id')
             ->get();
-
         return view('manager.payment', ['users' => $users]);
     }
 }

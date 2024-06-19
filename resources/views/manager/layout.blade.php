@@ -154,19 +154,14 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link collapse " href="/manager/working_times">
+            <a class="nav-link collapse " href="/manager/check_work">
                 <i class="fa-solid fa-calendar-check"></i>
                 <span>Chấm Công</span>
             </a>
 
             <a class="nav-link collapse" href="/manager/home">
                 <i class="fa-solid fa-users"></i>
-                <span>Nhân viên </span>
-            </a>
-
-            <a class="nav-link " href="/manager/history">
-                <i class="fa-solid fa-clock-rotate-left"></i>
-                <span>History</span>
+                <span>Nhân viên</span>
             </a>
 
             <a class="nav-link " href="/manager/payment">

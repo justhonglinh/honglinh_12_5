@@ -40,7 +40,7 @@ class ManagerController extends Controller
         $avatar_url = asset('storage/images/' . $newNameFile);
 
         $existingUser = DB::table('users')
-            ->where('email', $email)
+           ->where('email', $email)
             ->first();
 
         if ($existingUser) {
