@@ -1,27 +1,31 @@
 @extends('manager.layout')
 
 @section('content')
+    @if(session('check'))
+    <div class="alert alert-success">
+        {{ session('check') }}
+    </div>
+   @endif
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Bảng</h1>
         </div>
-
-        <h2>Danh sách nhân viên</h2>
+        <h2>Check Working List</h2>
         <table class="table align-middle mb-0 bg-white" id="work">
             <thead class="bg-light">
             <tr >
-                <td>ID</td>
+                <th>Day start</th>
+                <th>Day end</th>
                 <th>Name</th>
                 <th>Position</th>
-                <th>Phone</th>
-                <th>Address</th>
+                <th>Start time</th>
+                <th>End Time</th>
                 <th style="text-align: center">Actions</th>
             </tr>
             </thead>
             <tbody>
             @foreach($users as $users)
                 <tr>
-                    <td>{{$users->id}}</td>
-                    <td>
+                    <td>{{ \Carbon\Carbon::parse($users->start_time)->format('d/m/Y') }}</td>
+                    <td>{{\Carbon\Carbon::parse($users->end_time)->format('d/m/y')}}</td><td>
                         <div class="d-flex align-items-center">
                             <img
                                 src="{{$users->avatar_url}}"
@@ -40,27 +44,18 @@
                         <p class="text-muted mb-0">Level :{{$users->level_name}}</p>
                     </td>
                     <td>
-                        <p class="fw-normal mb-1">{{$users->phone}}</p>
+                        {{$users->start_time}}
                     </td>
-                    <td>{{$users->address}}</td>
+                    <td>
+                        {{$users->end_time}}
+                    </td>
 
                     <td style="text-align: center">
-                        <form id="updateForm" method="POST" action="/manager/working_times/check/{{$users->id}}">
+                        <form id="updateForm" method="POST" action="/manager/working_times/check/">
                             @csrf
-                            <div>
-                                <label for="startDateTime">Ngày giờ bắt đầu:</label>
-                                <input type="time" id="startDateTime" name="start_time">
-                            </div>
+                            <a href="/working_time/confirm/{{$users->id}}" class="btn btn-sm btn-primary">Confirm</a>
+                            <a href="/working_time/cancel/{{$users->id}}" class="btn btn-sm btn-danger">Cancel</a>
                             <br>
-
-                            <div>
-                                <label for="endDateTime">Ngày giờ kết thúc:</label>
-                                <input type="time" id="endDateTime" name="end_time">
-                            </div>
-
-                            <br>
-
-                            <button type="submit" class="btn btn-primary" onclick="confirmAndUpdate_{{$users->id}}(event)">Update</button>
 
                             <script>
                                 function confirmAndUpdate_{{$users->id}}(event) {
@@ -74,16 +69,6 @@
                                         alert('Update working time canceled!');
                                     }
                                 }
-                            </script>
-
-                            <script>
-                                document.addEventListener('DOMContentLoaded', function() {
-                                    var startDateTimeField = document.getElementById('startDateTime{{$loop->iteration}}');
-                                    var endDateTimeField = document.getElementById('endDateTime{{$loop->iteration}}');
-                                    var currentDateTime = new Date().toISOString().slice(0, 16);
-                                    startDateTimeField.value = currentDateTime;
-                                    endDateTimeField.value = currentDateTime;
-                                });
                             </script>
                         </form>
                     </td>

@@ -17,37 +17,35 @@ class CheckWorkController extends Controller
         $users = DB::table('users')
             ->join('position', 'users.position', '=', 'position.id')
             ->join('level', 'users.level', '=', 'level.id')
-            ->select('users.*', 'position.position_name', 'level.level_name')
+            ->join('working_times', 'users.id', '=', 'working_times.employee_id')
+            ->select('users.*', 'position.position_name', 'level.level_name', 'working_times.*')
+            ->where('working_times.status', '=', '1')
             ->get();
             return view('manager.check_work', ['users' => $users,'level'=>$level,'position'=>$position]);
 
     }
 
-    function check($id , Request $request)
+    function confirm($id )
     {
-        $startTime = Carbon::parse($request->input('start_time'));
-        $endTime = Carbon::parse($request->input('end_time'));
-        $timeDifference = $endTime->diffInSeconds($startTime);
+        DB::table('working_times')
+            ->where('id','=',$id)
+            ->update([
+                'status' => '2'
+            ]);
 
-        $hours = floor($timeDifference / 3600);
-        $minutes = floor(($timeDifference % 3600) / 60);
+        return redirect('/manager/check_work')->with('check', 'check successful');
 
-        if ($minutes >= 45) {
-            $newHours = $hours + 1;
-        } elseif ($minutes < 20) {
-            $newHours = $hours;
-        } else {
-            $newHours = $hours + 0.5;
-        }
-        DB::table('working_times')->insert([
-            'employee_id' => $id ,
-           'start_time' => $startTime,
-            'end_time' => $endTime,
-            'total' => $newHours ,
-            'created_at' => now()
-        ]);
+    }
 
-        return redirect("/manager/working_times") ;
+    function cancel($id)
+    {
+        DB::table('working_times')
+            ->where('id','=',$id)
+            ->update([
+                'status' => '0'
+            ]);
+        return redirect('/manager/check_work')->with('check', 'check was cancel');
+
     }
 
 }

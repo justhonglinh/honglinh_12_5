@@ -51,6 +51,7 @@
             </td>
             <td>{{$employees->address}}</td>
             <td style="text-align: center">
+                <a href="" class="btn btn-primary">Work Time</a>
                 <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalUpdateEmployees_{{ $employees->id }}">
                     Edit
                 </button>

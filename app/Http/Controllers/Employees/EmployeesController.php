@@ -18,6 +18,8 @@ class EmployeesController extends Controller
 
         $currentDate = Carbon::now();
         $currentYear = $currentDate->year;
+        $currentDay = $currentDate->day;
+        $currentMonth = $currentDate->month;
 
         $perPage = 31; // Số bản ghi hiển thị trên mỗi trang
 
@@ -29,6 +31,12 @@ class EmployeesController extends Controller
         // Truy vấn dữ liệu từ bảng 'level' dựa trên level_id của người dùng
         $level = DB::table('level')->where('id', '=', $user->level)->first();
         $position = DB::table('position')->where('id','=',$user->position)->first() ;
-        return view('employees.home', ['history' => $history,'level' => $level,'position'=>$position]);
+        $day = DB::table('working_times')
+            ->whereDay('created_at','=',$currentDay)
+            ->whereMonth('created_at','=',$currentMonth)
+            ->whereDay('created_at','=',$currentDay)
+            ->where('employee_id','=',$user->id )
+            ->first();
+        return view('employees.home', ['history' => $history,'day'=>$day,'level' => $level,'position'=>$position]);
     }
 }

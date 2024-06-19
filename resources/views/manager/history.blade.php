@@ -2,9 +2,8 @@
 
 @section('content')
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Bảng</h1>
         </div>
-        <h2>Danh sách nhân viên</h2>
+        <h2>Lịch su chấm cng</h2>
         <table class="table align-middle mb-0 bg-white" id="history">
             <thead class="bg-light">
                 <tr >

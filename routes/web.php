@@ -39,8 +39,8 @@ Route::get('/manager/level',[\App\Http\Controllers\Manager\LevelController::clas
 Route::get('/manager/position',[\App\Http\Controllers\Manager\PositionController::class,'viewPosition']
 )->name('manager.position');
 
-Route::get('/manager/working_times',[\App\Http\Controllers\Manager\CheckWorkController::class,'viewHome']
-)->name('manager/working_times') ;
+Route::get('/manager/check_work',[\App\Http\Controllers\Manager\CheckWorkController::class,'viewHome']
+)->name('manager/check_work') ;
 
 Route::get('/manager/payment',[\App\Http\Controllers\Manager\PaymentController::class,'viewPayment']
 )->name('manager/payment') ;
@@ -60,12 +60,10 @@ Route::post('/position/add',[\App\Http\Controllers\Manager\PositionController::c
 Route::get('/position/delete/{id}',[\App\Http\Controllers\Manager\PositionController::class,'deletePosition'])->name('process-delete-position') ;
 Route::post('/position/edit/{id}',[\App\Http\Controllers\Manager\PositionController::class,'processEditPosition'])->name('process-edit-position') ;
 
-
-//chcek work
-Route::post('/manager/working_times/check/{id}',[\App\Http\Controllers\Manager\CheckWorkController::class,'check']) ;
+//check work
+Route::post('/manager/check_work/{id}',[\App\Http\Controllers\Manager\CheckWorkController::class,'check']) ;
 Route::get('/manager/history',[\App\Http\Controllers\Manager\HistoryController::class,'viewHome']) ;
 Route::get('/manager/history/delete/{id}',[\App\Http\Controllers\Manager\HistoryController::class,'check_delete']) ;
-
 
 #=========================================================!!!!!=====================================================================
 //employees  home page
@@ -80,4 +78,9 @@ Route::get('/employees/bank',[\App\Http\Controllers\Employees\BankController::cl
 //bank
 Route::post('/bank/add',[\App\Http\Controllers\Employees\BankController::class,'addBank'])->name('process-add-bank') ;
 Route::post('/bank/edit',[\App\Http\Controllers\Employees\BankController::class,'editBank'])->name('process-edit-bank') ;
-
+// employee check in adn check out
+Route::get('/working-time/check-in/{id}', [\App\Http\Controllers\Employees\CheckController::class, 'checkIn'])->name('check-in');
+Route::get('/working-time/check-out/{id}', [\App\Http\Controllers\Employees\CheckController::class, 'checkOut'])->name('check-out');
+// manager check confirm or cancel checking_time
+Route::get('working_time/confirm/{id}',[\App\Http\Controllers\Manager\CheckWorkController::class,'confirm']) ;
+Route::get('working_time/cancel/{id}',[\App\Http\Controllers\Manager\CheckWorkController::class,'cancel']) ;
