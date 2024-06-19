@@ -81,4 +81,3 @@ Route::get('/employees/bank',[\App\Http\Controllers\Employees\BankController::cl
 Route::post('/bank/add',[\App\Http\Controllers\Employees\BankController::class,'addBank'])->name('process-add-bank') ;
 Route::post('/bank/edit',[\App\Http\Controllers\Employees\BankController::class,'editBank'])->name('process-edit-bank') ;
 
-

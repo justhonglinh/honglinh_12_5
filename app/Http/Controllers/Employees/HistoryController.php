@@ -27,7 +27,7 @@ class HistoryController extends Controller
             ->paginate($perPage);
         $level = DB::table('level')->where('id', '=', $user->level)->first();
         $position = DB::table('position')->where('id','=',$user->position)->first() ;
-        return view('employees.history', ['history' => $history,'level'=>$level,'position'=>$position]);
+        return view('employees.check', ['history' => $history,'level'=>$level,'position'=>$position]);
 
     }
 

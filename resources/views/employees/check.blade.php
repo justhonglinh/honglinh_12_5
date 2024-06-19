@@ -1,7 +1,7 @@
 @extends('employees.layout_emp')
 
 @section('content')
-    <main >
+    <main>
         <section style="background-color: #eee;">
             <div class="container py-5">
                 <div class="row">
@@ -22,7 +22,6 @@
                                     <p class="text-muted mb-1" style="text-transform:uppercase">
                                         Salary: {{$position->salary}}$/1h
                                     </p>
-
                             </div>
                         </div>
                     </div>

@@ -21,7 +21,7 @@
     <div class="container d-flex flex-wrap">
         <ul class="nav me-auto">
             <li class="nav-item"><a href="/employees/home" class="nav-link link-body-emphasis px-2 active" aria-current="page">Home</a></li>
-            <li class="nav-item"><a href="/employees/history" class="nav-link link-body-emphasis px-2">Lịch sử</a></li>
+            <li class="nav-item"><a href="/employees/history" class="nav-link link-body-emphasis px-2">Chấm Công</a></li>
             <li class="nav-item"><a href="/employees/payment" class="nav-link link-body-emphasis px-2">Bảng Lương</a></li>
             <li class="nav-item"><a href="/employees/bank" class="nav-link link-body-emphasis px-2">Ngân Hàng</a></li>
         </ul>
