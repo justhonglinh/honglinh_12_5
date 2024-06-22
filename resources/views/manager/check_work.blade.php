@@ -54,6 +54,7 @@
                         <form id="updateForm" method="POST" action="/manager/working_times/check/">
                             @csrf
                             <a href="/working_time/confirm/{{$users->id}}" class="btn btn-sm btn-primary">Confirm</a>
+                            <a href="/working_time/edit/{{$users->id}}" class="btn btn-sm btn-warning">Edit</a>
                             <a href="/working_time/cancel/{{$users->id}}" class="btn btn-sm btn-danger">Cancel</a>
                             <br>
 

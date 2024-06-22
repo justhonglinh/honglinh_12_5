@@ -28,6 +28,7 @@ class CheckController extends Controller
     public function checkOut($id)
     {
         $currentMonth = Carbon::now()->month;
+
         $check = DB::table('working_times')
             ->whereMonth('created_at', '=', $currentMonth)
             ->where('employee_id', '=', $id)
@@ -38,7 +39,7 @@ class CheckController extends Controller
             return redirect('/employees/home')->with('error', 'No working time record found for the current month');
         }
 
-        $end_time = Carbon::createFromFormat('H:i:s', '07:33:33');
+        $end_time = now();
 
         $timeDifference = $end_time->diffInSeconds($check->start_time);
 
@@ -61,6 +62,5 @@ class CheckController extends Controller
                 'total' => $newHours
             ]);
 
-        return redirect('/employees/home')->with('success', 'Confirm check successful');
-    }
-}
+        return redirect('/employees/home')->with('success', 'Check-out confirmed successfully');
+    }}

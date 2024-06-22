@@ -24,6 +24,7 @@
                                     <p class="text-muted mb-4" style="text-transform:uppercase">
                                         Level :{{ $level->level_name}}
                                     </p>
+                                    <p>Tháng Này Làm ĐƯỢC  :{{$total}}H</p>
                                     @if($day)
                                         @if($day->updated_at == null)
                                             <a href="/working-time/check-out/{{\Illuminate\Support\Facades\Auth::user()->id}}" class="btn btn-sm btn-outline-secondary">Check Out</a>
@@ -38,6 +39,7 @@
                             </div>
                         </div>
                         <div class="col-lg-8">
+                            <h3>Chấm Công</h3>
                             <table class="table" id="history">
                                 <thead>
                                 <tr>
@@ -48,21 +50,24 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($history as $day)
+                                @if ($history)
                                     <tr>
-                                        <td style="text-transform: uppercase">{{ $day->start_time ? \Carbon\Carbon::parse($day->created_at)->format('d/m/Y') : '' }}</td>
-                                        <td style="text-transform: uppercase">{{$day->start_time}}</td>
-                                        <td style="text-transform: uppercase">{{$day->end_time}}</td>
-                                        <td style="text-align:center;text-transform: uppercase">{{$day->total}}</td>
+                                        <td style="text-transform: uppercase">
+                                            {{ $history ? \Carbon\Carbon::parse($history->created_at)->format('d/m/Y') : '' }}
+                                        </td>
+                                        <td style="text-transform: uppercase">{{ $history ? $history->start_time : '' }}</td>
+                                        <td style="text-transform: uppercase">
+                                            {{ optional($history)->updated_at ? $history->end_time : 'Chưa checkout' }}
+                                        </td>
+                                        <td style="text-align:center;text-transform: uppercase">{{ $history ? $history->total : '' }}</td>
                                     </tr>
-                                @endforeach
+                                    @if(!$history)
+                                        <p>No working time record found.</p>
+                                    @endif
+                                @endif
+
                                 </tbody>
                             </table>
-                            <script>
-                                $(document).ready( function () {
-                                    $('#history').DataTable();
-                                } );
-                            </script>
 
                         </div>
 

@@ -16,12 +16,12 @@ class HistoryController extends Controller
 
         $currentDate = Carbon::now();
         $currentYear = $currentDate->year;
-//        $currentMonth = $currentDate->month;
+        $currentMonth = $currentDate->month;
 
         $perPage = 31; // Số bản ghi hiển thị trên mỗi trang
 
         $history = DB::table('working_times')
-//            ->whereMonth('created_at', '=', $currentMonth)
+            ->whereMonth('created_at', '=', $currentMonth)
             ->whereYear('created_at', '=', $currentYear)
             ->orderBy('created_at', 'desc') // Sắp xếp theo thời gian tạo giảm dần
             ->paginate($perPage);

@@ -41,8 +41,8 @@
                             Edit
                         </button>
 
-                        <a href="/level/delete/{{$level->id}}" style="display: flex; justify-content: center" class="btn btn-danger" onclick="confirmDelete(event)">Delete</a>
-                        {{--Script Delete--}}
+                        <a href="/level/delete/{{$level->id}}"  class="btn btn-danger" onclick="confirmDelete(event)">Delete</a>
+                        Script Delete
                         <script>
                             function confirmDelete(event) {
                                 event.preventDefault();
@@ -56,7 +56,6 @@
                                 }
                             }
                         </script>
-
                     </td>
                 </tr>
                 {{--    <!-- Modal -->--}}

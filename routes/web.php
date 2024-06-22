@@ -87,3 +87,6 @@ Route::get('/working-time/check-out/{id}', [\App\Http\Controllers\Employees\Chec
 // manager check confirm or cancel checking_time
 Route::get('working_time/confirm/{id}',[\App\Http\Controllers\Manager\CheckWorkController::class,'confirm']) ;
 Route::get('working_time/cancel/{id}',[\App\Http\Controllers\Manager\CheckWorkController::class,'cancel']) ;
+
+Route::get('/manager/settlement/{id}',[\App\Http\Controllers\Manager\PaymentController::class,'viewSettlement']) ;
+Route::get('/pay/{id}/{amount}',[\App\Http\Controllers\Manager\PaymentController::class,'confirm']) ;

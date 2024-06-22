@@ -40,7 +40,7 @@
                                 <tbody>
                                     @foreach($history as $day)
                                         <tr>
-                                            <td style="text-transform: uppercase">{{ $day->start_time ? \Carbon\Carbon::parse($day->start_time)->format('d/m/Y') : '' }}</td>
+                                            <td style="text-transform: uppercase">{{ $day->created_at ? \Carbon\Carbon::parse($day->created_at)->format('d/m/Y') : '' }}</td>
 
                                             <td style="text-transform: uppercase">
                                                 {{ \Carbon\Carbon::parse($day->start_time)->format('H:i:s') }}
