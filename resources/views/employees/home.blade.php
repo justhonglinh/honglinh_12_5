@@ -24,6 +24,7 @@
                                     <p class="text-muted mb-4" style="text-transform:uppercase">
                                         Level :{{ $level->level_name}}
                                     </p>
+                                    <p>Tháng Này Làm ĐƯỢC  :{{$total}}H</p>
                                     @if($day)
                                         @if($day->updated_at == null)
                                             <a href="/working-time/check-out/{{\Illuminate\Support\Facades\Auth::user()->id}}" class="btn btn-sm btn-outline-secondary">Check Out</a>

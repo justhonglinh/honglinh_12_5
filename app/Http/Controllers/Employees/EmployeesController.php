@@ -25,10 +25,13 @@ class EmployeesController extends Controller
 
         $history = DB::table('working_times')
             ->whereYear('created_at', '=', $currentYear)
-            ->orderBy('created_at', 'desc') // Sắp xếp theo thời gian tạo giảm dần
+            ->whereMonth('created_at', '=', $currentMonth)
+            ->orderBy('created_at', 'desc')
             ->paginate($perPage);
-
-        // Truy vấn dữ liệu từ bảng 'level' dựa trên level_id của người dùng
+        $total = DB::table('working_times')
+            ->whereYear('created_at', '=', $currentYear)
+            ->whereMonth('created_at', '=', $currentMonth)
+            ->sum('total');        // Truy vấn dữ liệu từ bảng 'level' dựa trên level_id của người dùng
         $level = DB::table('level')->where('id', '=', $user->level)->first();
         $position = DB::table('position')->where('id','=',$user->position)->first() ;
         $day = DB::table('working_times')
@@ -37,6 +40,6 @@ class EmployeesController extends Controller
             ->whereDay('created_at','=',$currentDay)
             ->where('employee_id','=',$user->id )
             ->first();
-        return view('employees.home', ['history' => $history,'day'=>$day,'level' => $level,'position'=>$position]);
+        return view('employees.home', ['history' => $history,'total'=>$total,'day'=>$day,'level' => $level,'position'=>$position]);
     }
 }

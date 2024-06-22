@@ -36,12 +36,14 @@
                 </td>
                 <td> {{$user->bank_number}}</td>
                 <td> {{$user->salary}}$/1h</td>
+
                 <td>
                     <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#confirm_payment_{{ $user->id }}">
-                        pay
+                        Pay
                     </button>
                 </td>
             </tr>
+
             <div class="modal fade" id="confirm_payment_{{ $user->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -50,7 +52,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <table class="table" id="history"                                                                                                                                                                                                                                                                                                                                                                                                                     >
+                            <table class="table" id="history">
                                 <thead>
                                 <tr>
                                     <th scope="col">Day</th>
@@ -61,16 +63,10 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td style="text-transform: uppercase">{{ $user->created_at ? \Carbon\Carbon::parse($user->start_time)->format('d/m/Y') : '' }}</td>
-
-                                    <td style="text-transform: uppercase">
-                                        {{ \Carbon\Carbon::parse($user->start_time)->format('H:i:s') }}
-                                    </td>
-
-                                    <td style="text-transform: uppercase">
-                                        {{ \Carbon\Carbon::parse($user->end_time)->format('H:i:s') }}
-                                    </td>
-                                    <td style="text-align:center;text-transform: uppercase">{{$user->total}}</td>
+                                    <td>{{ $user->created_at ? \Carbon\Carbon::parse($user->start_time)->format('d/m/Y') : '' }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($user->start_time)->format('H:i:s') }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($user->end_time)->format('H:i:s') }}</td>
+                                    <td style="text-align: center; text-transform: uppercase">{{ $user->total }}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -83,7 +79,6 @@
             </div>
 
         @endforeach
-
         </tbody>
     </table>
 @endsection
