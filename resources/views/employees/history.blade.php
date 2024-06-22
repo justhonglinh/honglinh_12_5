@@ -34,6 +34,7 @@
                                     <th scope="col">Start Time</th>
                                     <th scope="col">End Time</th>
                                     <th scope="col" style="text-align: center">Total</th>
+                                    <th scope="col" style="text-align: center">Status</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -49,6 +50,13 @@
                                                 {{ \Carbon\Carbon::parse($day->end_time)->format('H:i:s') }}
                                             </td>
                                             <td style="text-align:center;text-transform: uppercase">{{$day->total}}</td>
+                                            <td style="text-align: center; text-transform: uppercase;">
+                                                @if($day->status == 1)
+                                                    Chưa chấp nhận
+                                                @elseif($day->status == 2)
+                                                    Chấp nhận
+                                                @endif
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
