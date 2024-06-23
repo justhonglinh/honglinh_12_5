@@ -32,33 +32,27 @@
                             <thead>
                             <tr>
                                 <th scope="col" style="text-align: center">Month</th>
-                                <th scope="col" style="text-align: center">Total Time</th>
-                                <th scope="col" style="text-align: center">Salary</th>
                                 <th scope="col" style="text-align: center">Factor</th>
+                                <th scope="col" style="text-align: center">Salary</th>
                                 <th scope="col" style="text-align: center">Total Salary</th>
-                                <th scope="col" style="text-align: center">Status Salary</th>
-                                <th scope="col" style="text-align: center">Actions</th>
-
+                                <th scope="col" style="text-align: center">Status</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($monthlyTotals as $month => $total)
-                                    <tr>
-                                        <td style="text-align: center;text-transform: uppercase">{{ $month }}</td>
-                                        <td style="text-align: center;text-transform: uppercase ">{{ $total }} Hours</td>
-                                        <td style="text-align: center;text-transform: uppercase">{{ $position->salary }} $/ 1 Hours</td>
-                                        <td style="text-align: center;text-transform: uppercase">{{ $level->level_factor }}</td>
-                                        <td style="text-align: center;text-transform: uppercase">{{ $total * $position->salary * $level->level_factor }} $</td>
-                                        <td>Đã thanh toán </td>
-                                        <td>
-                                            <button>
-                                                for more
-                                            </button>
-                                        </td>
-                                    </tr>
+                            @foreach ($payment as $item)
+                                <tr>
+                                    <td style="text-align: center">{{ date('F Y', strtotime($item->created_at)) }}</td>
+                                    <td style="text-align: center">{{ $level->level_factor }}</td>
+                                    <td style="text-align: center">{{ $position->salary }}</td>
+                                    <td style="text-align: center">{{ $item->total_salary }}</td>
+                                    <td style="text-align: center">{{ $item->status }}</td>
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>
+
+                        <p></p>
+                        <p>Position: {{ $position->position_name }}</p>
                         <script>
                             $(document).ready( function () {
                                 $('#history').DataTable();

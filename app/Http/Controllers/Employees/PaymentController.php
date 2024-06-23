@@ -9,20 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
 {
-    public function calculateMonthlyTotals()
-    {
-        $currentYear = Carbon::now()->year;
 
-        $monthlyTotals = DB::table('working_times')
-            ->select(DB::raw('SUM(total) as total_month, MONTH(created_at) as month'))
-            ->whereYear('created_at', '=', $currentYear)
-            ->groupBy('month')
-            ->get()
-            ->pluck('total_month', 'month')
-            ->toArray();
-
-        return $monthlyTotals;
-    }
 
     public function showPayment()
     {
@@ -30,8 +17,8 @@ class PaymentController extends Controller
 
         $level = DB::table('level')->where('id', '=', $user->level)->first();
         $position = DB::table('position')->where('id','=',$user->position)->first() ;
-        $monthlyTotals = $this->calculateMonthlyTotals();
+        $payment = DB::table('payments')->where('employee_salary_id' , '=' , $user->id)->get();
 
-        return view('Employees.payment',['monthlyTotals'=>$monthlyTotals, 'level'=>$level, 'position'=>$position]);
+        return view('employees.payment',['payment'=>$payment, 'level'=>$level, 'position'=>$position]);
     }
 }
