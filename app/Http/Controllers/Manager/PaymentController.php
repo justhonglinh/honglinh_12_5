@@ -18,13 +18,29 @@ class PaymentController extends Controller
             ->select(
                 'users.id',
                 'users.name',
-                'bank_information.bank_name' ,
+                'bank_information.bank_name',
                 'bank_information.bank_number'
             )
             ->get();
 
-        $pay = DB::table('payments')->get() ;
-        return view('manager.payment', ['users' => $users,'month'=>$currentMonth]);
+        $payments = DB::table('payments')
+            ->whereMonth('created_at', '=', $currentMonth)
+            ->get();
+
+        $usersWithPayments = [];
+        foreach ($users as $user) {
+            $userPayments = $payments->filter(function ($payment) use ($user) {
+                return $payment->employee_salary_id == $user->id;
+            });
+            if ($userPayments->count() == 0) {
+                $usersWithPayments[] = $user;
+            }
+        }
+
+        return view('manager.payment', [
+            'users' => $usersWithPayments,
+            'month' => $currentMonth
+        ]);
     }
 
     function viewSettlement($id)
@@ -41,6 +57,7 @@ class PaymentController extends Controller
             ->whereMonth('created_at', '=', $currentMonth)
             ->whereYear('created_at', '=', $currentYear)
             ->where('status','=','2')
+            ->where('employee_id','=',$id)
             ->orderBy('created_at', 'desc') // Sắp xếp theo thời gian tạo giảm dần
             ->paginate(10);
 
@@ -51,6 +68,7 @@ class PaymentController extends Controller
             ->whereYear('created_at', '=', $currentYear)
             ->whereMonth('created_at', '=', $currentMonth)
             ->where('status','=','2')
+            ->where('employee_id','=',$id)
             ->sum('total');
 
 
